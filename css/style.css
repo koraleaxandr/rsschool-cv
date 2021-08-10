@@ -1,0 +1,54 @@
+.header-section {
+  position: relative;
+  width: 1000px;
+  height: 200px;
+  margin: auto;
+  margin-bottom: 0;
+  background-color: #f3f3f3;
+  background-image: url();
+  background-position: 20% 50%;
+  background-repeat: no-repeat;
+  }
+  .text-header {
+  position: relative;
+  width: 600px;
+  left: 30%;
+  top: 1%;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+.image-CV {
+  position:absolute;
+  margin-top: 0%;
+  margin-left: 0px;
+}
+.footer-section {
+  position: relative;
+  width: 1000px;
+  height: 60px;
+  margin: auto;
+  margin-top: 0;
+  background-color: #6df56136;
+  background-image: url();
+  background-position: 20% 50%;
+  background-repeat: no-repeat;
+}
+
+.text-footer {
+  position: relative;
+  width: 400px;
+  left: 60%;
+  top: 20%;
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+.image-github {
+  position:absolute;
+  margin-top: 1%;
+  margin-left: 15%;
+}
+.image-rsschool {
+  position:absolute;
+  margin-top: 1%;
+  margin-left: 40%;
+}
