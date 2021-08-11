@@ -1,7 +1,6 @@
 # Alexandr Karatkevich
 
- JavaScript/Front-end Developer
- ! [Photo] (/images/imageCV.png)
+JavaScript/Front-end Developer
   
 ## <https://koraleaxandr.github.io/rsschool-cv/>
 
@@ -24,7 +23,7 @@ My goal is an open frot-end development and make it part of my life.
 * Figma;
 * VSCode
 
-## Code sample 
+## Code sample
 
 '''function descendingOrder(t){
   let result = t
