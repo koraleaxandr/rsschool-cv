@@ -1,7 +1,7 @@
 # Alexandr Karatkevich
 
  JavaScript/Front-end Developer
- ![Photo] (/images/imageCV.png)
+ ! [Photo] (/images/imageCV.png)
   
 ## <https://koraleaxandr.github.io/rsschool-cv/>
 
