@@ -1,8 +1,8 @@
-# align="center" img src="images/imageCV.png/200/200" Alexandr Karatkevich
+# Alexandr Karatkevich
 
- ##JavaScript/Front-end Developer
+ JavaScript/Front-end Developer
+ ![Photo] (images/imageCV.png)
   
-
 ## <https://koraleaxandr.github.io/rsschool-cv/>
 
 ## Contacts
@@ -19,12 +19,12 @@ My goal is an open frot-end development and make it part of my life.
 
 ## Skills
 
-* ###Basic knowledge of HTML, CSS, Bootstrap, JS, React JS;
-* ###Git/GitHub;
-* ###Figma;
-* ###VSCode
+* Basic knowledge of HTML, CSS, Bootstrap, JS, React JS;
+* Git/GitHub;
+* Figma;
+* VSCode
 
-## Code sample
+## Code sample 
 
 '''function descendingOrder(t){
   let result = t
@@ -39,10 +39,10 @@ My goal is an open frot-end development and make it part of my life.
 
 ## Education
 
-* ###Belarusian-Russian University
+* Belarusian-Russian University
   * Jack Transport, Construction, Road Machines and Equipment
   * Enterprise Economy and Management.
-* ###RSSchool, JS / FRONT-END (in process...)
+* RSSchool, JS / FRONT-END (in process...)
 
 ## English Level
 
