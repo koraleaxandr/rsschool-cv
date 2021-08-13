@@ -1,3 +1,21 @@
+ ul {
+   color: black;
+list-style: inside;
+font: 1.2em ;
+ }
+
+ li {
+font-size: 1em;
+ }
+ .link-hover {
+   font-size: 120%; 
+ }
+ .link-hover :hover {
+
+  color: rgb(247, 19, 209);
+}
+
+ 
 .header-section {
   position: relative;
   width: 1000px;
@@ -12,8 +30,9 @@
   .text-header {
   position: relative;
   width: 600px;
-  left: 30%;
-  top: 1%;
+  height: 150px;
+  left: 300px;
+  top: 20px;
   font-weight: 900;
   font-size: 1.5rem;
   color: #000000;
@@ -22,13 +41,34 @@
 .main-section {
   position: relative;
   width: 1000px;
-  height: 750px;
-  margin: 0% auto;
-  background-color: #c7d6dfa9;
-  background-image: url();
-  background-position: 20% 50%;
-  background-repeat: no-repeat;
+  height: 600px;
+  margin: 0px auto;
+  padding: 0px;
+  background-color: #e73131;
+}
+
+.left-section {
+  position: relative;
+  width: 180px;
+  height: 600px;
+  margin-left: 0px;
+  background-color: #51e2f5;
+  padding: 10px;
   }
+
+.central-section {
+  position: relative;
+  width: 750px;
+  height: 600px;
+  margin-top:0px;
+  margin-left: 200px;
+  background-color: #cce8faa9;
+  }
+
+.central-section {
+    padding-left: 30px;
+     color:black
+}
 
 .image-CV {
   position:absolute;
@@ -39,9 +79,9 @@
 .footer-section {
   position: relative;
   width: 1000px;
-  height: 60px;
+  height: 50px;
   margin: 0% auto;
-  background-color: #6df56136;
+  background-color: #c1f3bd36;
   background-image: url();
   background-position: 20% 50%;
   background-repeat: no-repeat;
