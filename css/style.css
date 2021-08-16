@@ -14,13 +14,15 @@ font-size: 1em;
 
   color: rgb(247, 19, 209);
 }
-
+ h1 {
+   font-size: 2em
+ }
  
 .header-section {
   position: relative;
   width: 1000px;
   height: 200px;
-  margin: 0% auto;
+  margin: 0 auto 0 auto;
   background-color: #f3f3f3;
   background-image: url();
   background-position: 20% 50%;
@@ -30,7 +32,6 @@ font-size: 1em;
   .text-header {
   position: relative;
   width: 600px;
-  height: 150px;
   left: 300px;
   top: 20px;
   font-weight: 900;
@@ -38,49 +39,52 @@ font-size: 1em;
   color: #000000;
 }
 
+.image-CV {
+  position:absolute;
+  margin: 0;
+}
+
 .main-section {
   position: relative;
   width: 1000px;
   height: 600px;
-  margin: 0px auto;
-  padding: 0px;
-  background-color: #e73131;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #ffffff;
 }
 
 .left-section {
-  position: relative;
+  position: absolute;
   width: 180px;
-  height: 600px;
-  margin-left: 0px;
+  height: 580px;
+  margin: 0;
   background-color: #51e2f5;
-  padding: 10px;
+  padding: 20px 10px 0 10px;
   }
 
 .central-section {
-  position: relative;
-  width: 750px;
-  height: 600px;
-  margin-top:0px;
-  margin-left: 200px;
+  position: absolute;
+  width: 760px;
+  height: 560px;
+  margin:0 0 0 200px;
+  padding: 20px 10px 20px 30px;
   background-color: #cce8faa9;
   }
 
-.central-section {
-    padding-left: 30px;
-     color:black
-}
+.text-central-section {
+  position: relative;
+  width: 720px;
+  font-weight: 900;
+  color: #000000;
+} 
 
-.image-CV {
-  position:absolute;
-  margin-top: 0%;
-  margin-left: 0px;
-}
+
 
 .footer-section {
   position: relative;
   width: 1000px;
-  height: 50px;
-  margin: 0% auto;
+  height: 60px;
+  margin: 0 auto 0 auto;
   background-color: #c1f3bd36;
   background-image: url();
   background-position: 20% 50%;
