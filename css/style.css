@@ -4,6 +4,10 @@ list-style: inside;
 font: 1.2rem ;
  }
 
+ .left-section ul {
+   list-style: outside;
+ }
+
  li {
 font-size: 1.1rem;
  }
@@ -16,10 +20,11 @@ font-size: 1.1rem;
 }
  h1 {
    font-size: 2em;
-   /*
-   text-decoration: underline rgb(0, 17, 255);
- */
   }
+
+ header h1 {   
+   text-decoration: underline rgb(10, 43, 49);
+ }
 
   p {
   font-size: 1.1rem;  
@@ -42,6 +47,7 @@ font-size: 1.1rem;
   left: 300px;
   top: 20px;
   font-weight: 900;
+  line-height: 1.0;
   font-size: 1.5rem;
   color: #10212c;
 }
@@ -57,7 +63,6 @@ font-size: 1.1rem;
   height: 600px;
   margin: 0 auto;
   padding: 0;
-  background-color: #ffffff;
 }
 
 .left-section {
