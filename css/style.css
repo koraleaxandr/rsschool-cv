@@ -1,23 +1,24 @@
  ul {
-color: #043453;
-list-style: inside;
-font: 1.2rem ;
- }
+  color: #043453;
+  list-style: inside;
+  font: 1.2rem ;
+  }
 
- .left-section ul {
+.left-section ul {
    list-style: outside;
- }
+  }
 
  li {
-font-size: 1.1rem;
+  font-size: 1.1rem;
  }
- .link-hover {
+.link-hover {
    font-size: 120%; 
- }
- .link-hover :hover {
+  }
 
+.link-hover :hover {
   color: rgb(247, 19, 209);
-}
+ }
+
  h1 {
    font-size: 2em;
   }
@@ -49,7 +50,7 @@ font-size: 1.1rem;
   font-weight: 900;
   line-height: 1.0;
   font-size: 1.5rem;
-  color: #10212c;
+  color: #163244;
 }
 
 .image-CV {
@@ -71,11 +72,12 @@ font-size: 1.1rem;
   height: 580px;
   margin: 0;
   background-color: #51e2f5;
-  padding: 20px 0px 0 20px;
+  padding: 20px 10px 0 10px;
   }
 
   .left-section {
     color: #043453;
+    
   }
 
 .central-section {
