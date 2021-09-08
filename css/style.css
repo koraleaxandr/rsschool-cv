@@ -124,8 +124,6 @@ transition: all 1s;
   margin: 0 auto;
   padding: 10px;
   background-color: #c1f3bd36;
-  /* background-image: url();
-  background-position: 20% 50%; */
   background-repeat: no-repeat;
   display: flex;
   justify-content: space-around;
