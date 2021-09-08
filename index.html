@@ -13,31 +13,52 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;900&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <link rel="stylesheet" href="css/style.css">
     <title> Alexandr Karatkevich CV</title>
  </head>  
-  <header class="header-section">
+  <header>
+    <div class="header-section">
           <img class="image-CV" src="./images/imageCV.png" alt="CV Photo" width="200" height="200">       
     <div class="text-header" >  
        <h1>Alexandr Karatkevich</h1>
-       <p>JavaScript/Front-end Developer</p>
-       <p>(RS School Student)</p>  
+       <h4>JavaScript/Front-end Developer</h4>
+       <h4>(RS School Student)</h4> 
+       <nav class="header-nav">
+                <ul class="ul-header-nav">
+                    <li>
+                        <a href="#contacts" target="_blank" target="_blank">Contacts</a>
+                    </li>
+                    <li>
+                        <a href="#skills" target="_blank">Skills</a>    
+                    </li>
+                    <li>
+                        <a href="#education" target="_blank">Education</a>
+                    </li>
+                    <li>
+                        <a href="#english" target="_blank">English level</a>
+                    </li>
+                 </ul>
+
+            </nav> 
+    </div>
     </div>
   </header>
   <main>
     <div class="main-section">
       <aside>
-        <div class="left-section">
+        <div class="left-section" id="contacts">
            <h2>Contacts</h2>
            <ul>
             <li class="link-hover"><a href="tel:+375297434445" target="_blank">Phone</a></li>
             <li class="link-hover"><a href="mailto:koraleaxandr@gmail.com" target="_blank">E-mail</a></li>
-            <li class="link-hover"><a href="@koraleaxandr" target="_blank">Telegram</a></li>
+            <li class="link-hover"><a href="https://telegram.me/koraleaxandr" target="_blank">Telegram</a></li>
             <li class="link-hover"><a href="https://github.com/koraleaxandr" target="_blank">GitHub</a></li>
            </ul>
-           <h2>Skills</h2>
+           <h2 id="skills">Skills</h2>
            <ul>            
             <li>Basic knowledge of HTML, CSS, Bootstrap, JS, React JS;</li>
             <li>Git/GitHub</li>
@@ -48,9 +69,9 @@
       </aside>  
       <div class="central-section">
         <div class= "text-central-section">    
-            <h2>Summary</h2>
+            <h2 id="summary">Summary</h2>
               <p>My goal is an open front-end development and make it part of my life.</p>           
-           <h2>Education</h2>
+           <h2 id="education">Education</h2>
               <ul>
                 <li> Belarusian-Russian University
                   <ul>
@@ -61,7 +82,7 @@
                 <li>RSSchool, JS / FRONT-END (in process...)</li> 
               </ul>              
             <h2>Code sample</h2>
-              <pre>
+              <pre><code>
                  function descendingOrder(t){
                  let result = t
                  .toString()
@@ -70,8 +91,9 @@
                  .join('')          
                  return parseInt(result)
                  };
+                 </code>
               </pre>             
-            <h2>English level</h2>
+            <h2 id="eglish">English level</h2>
               <p>A2+, and I've working to improove my language skills.</p>
         </div>
     </main>
