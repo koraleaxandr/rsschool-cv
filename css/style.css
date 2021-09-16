@@ -1,7 +1,47 @@
 html {
+  background-color: rgb(232, 241, 241);
   scroll-behavior: smooth;
 }
 
+
+
+@media only screen and (max-width: 400px) {
+.header-nav ul {
+  width: 100%;
+  position: relative;
+  flex-direction: column;  
+}
+.image-CV {
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+
+h1 {
+  font-size: 1.6em;
+}
+
+.header-section {
+  flex-wrap: wrap;
+  flex-direction: column;  
+}
+
+.main-section {
+  flex-direction: column;
+}
+
+.left-section {
+  height: auto;
+  width: 100%;
+}
+
+.central-section {
+  padding: 5px;
+  font-size: 0.9em;
+}
+
+}
+/*-----------------------------------------------------------------------*/
 * {
   margin:0;
   padding:0;
@@ -28,7 +68,7 @@ font: 1.2rem ;
 
  a:active {
    /* background: rgb(43, 12, 12); */
-   color: white;
+   color: rgba(255, 255, 255, 0.726);
  }
 
 li {
@@ -54,16 +94,16 @@ transition: all 1s;
     margin: 15px auto;
   font-size: 1.0rem;
 }
-  /*--------------------------------------------------------*/
+  /*------------------------------HEADER--------------------------*/
 header {
   position: relative;
-  height: 200px;
+  min-height: 200px;
 } 
 
 .header-section {
   position: relative;
   max-width: 1000px;
-  height: 200px;
+  min-height: 200px;
   margin: 0 auto 0 auto;
   background-color: #f3f3f3;
   background-repeat: no-repeat;
@@ -71,11 +111,10 @@ header {
   /* justify-content: space-around; */
   flex-wrap: nowrap;
   align-items: center;
-  overflow: hidden;
   box-sizing: border-box;
   }
 
-  .text-header {
+.text-header {
   position: relative;
   /* width: 100%; */
   height: 100%;
@@ -89,14 +128,16 @@ header {
 
 .image-CV {
   position:relative;
- }
+}
 
- /*----------------------------------------------------------------------------------*/
+
+
+ /*-------------------------------HEADER NAV----------------------------------*/
 .header-nav {
    /* Navigation */
    position: relative;
    max-width: 1000px;
-   height: 50px;   
+   min-height: 50px;   
    margin: 0px auto 0 auto;
    padding: 0px;
    border: 0px;
@@ -106,21 +147,20 @@ header {
  .ul-header-nav {
    position: relative;
    max-width: 1000px;
-   height: 50px;
+   min-height: 50px;
    list-style: none;
    font-size: 1.5rem;
    font-weight: 600;
    display: flex;
    flex-wrap: nowrap;
    justify-content: space-around;
-   align-items: center;
-   overflow: hidden;
+   align-items: center;   
   }
-/*---------------------------------------------------------*/
+/*------------------------------MAIN---------------------------*/
 .main-section {
   position: relative;
   max-width: 1000px;
-  height: 660px;
+  min-height: 625px;
   margin: 0px auto;
   padding: 0px;
   background-color: #cce8faa9;
@@ -134,20 +174,16 @@ header {
 
 .left-section {
   position: relative;
-  width: 200px;
-  height: 660px;
-  background-color: #51e2f5;
+  min-height: 625px;
   padding: 0px 10px 0 20px;
-  }
-
-  .left-section {
-    font-size: 1rem;
-    color: #043453;
+  font-size: 1.2rem;
+  color: #043453;
+  background-color: #51e2f5;
   }
 
 .central-section {
   position: relative;  
-  height: 660px;
+  min-height: 625px;
 }
 
 .text-central-section {
