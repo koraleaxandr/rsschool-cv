@@ -37,7 +37,7 @@ h1 {
 
 .central-section {
   padding: 5px;
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
 }
@@ -69,6 +69,11 @@ font: 1.2rem ;
  a:active {
    /* background: rgb(43, 12, 12); */
    color: rgba(255, 255, 255, 0.726);
+ }
+
+ ul ul {
+   margin-left: 30px;
+   font-weight: 300;
  }
 
 li {
@@ -191,7 +196,7 @@ header {
   height: 100%;
   width: 100%;
   padding: 0px 0px 10px 10px;
-  font-size: 1.0em;
+  font-size: 1.2em;
   line-height: 1.0;
   font-weight: 900;
   color: #043453;
