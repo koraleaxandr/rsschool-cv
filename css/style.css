@@ -4,9 +4,9 @@ html {
   min-width: 320px;
 }
 
-@media only screen and (min-width: 550px) {
-  
-}
+/* @media only screen and (min-width: 550px) { 
+    
+} */
 
 
 
@@ -50,10 +50,6 @@ html {
     padding: 5px;
     font-size: 0.8em;
   }
-
-  
-
-
 }
 
 
@@ -179,6 +175,7 @@ header {
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
+  transition: 0s;
 }
 
 .menu-span {
@@ -255,9 +252,12 @@ header {
 }
 
 label {
-  position: relative;
+  position: absolute;
+  top: -5px;
   height: 100%;
   width: auto;
+  font-size: 1.2rem;
+  color: #22285c;
 }
 
 #input:checked~#menu {
