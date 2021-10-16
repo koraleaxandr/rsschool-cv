@@ -22,19 +22,16 @@ html {
     width: 100%;
   }
 
-<<<<<<< Updated upstream
   .image-CV {
     position: relative;
     height: auto;
     width: 100%;
   }
-=======
 .left-section {
   height: auto;
   width: 100%;
   font: 1.3rem
 }
->>>>>>> Stashed changes
 
   h1 {
     font-size: 1.6em;
@@ -81,7 +78,6 @@ a {
   color: rgb(32, 13, 104);
 }
 
-<<<<<<< Updated upstream
 a:hover,
 .link-hover :hover {
   color: #FFFFFF
@@ -91,23 +87,6 @@ a:active {
   /* background: rgb(43, 12, 12); */
   color: rgba(255, 255, 255, 0.726);
 }
-=======
- 
- /* .link-hover:hover {
-   transform-origin: scale(1.7);
-  color: #4b0d5ab0 
-}*/
- 
- a:hover,
- a:active {   
-   /* background: rgb(43, 12, 12); */
-   color: rgba(92, 42, 158, 0.986);
- }
-
- ul {
-   margin: 0 10px;
- }
->>>>>>> Stashed changes
 
 ul ul {
   margin-left: 30px;
@@ -115,23 +94,9 @@ ul ul {
 }
 
 li {
-<<<<<<< Updated upstream
   margin: 10px 0px;
   transition: all 1s;
 }
-=======
-  margin:10px 0px;
-transition: all 1s;
- }
- .link-hover {
-   font-size: 120%;
-   font-weight: 600;   
- }
-
- h1 {
-   font-size: 2em;   
-  }
->>>>>>> Stashed changes
 
 .link-hover {
   font-size: 120%;
@@ -315,34 +280,19 @@ label {
   /* justify-content: space-between; */
   flex-wrap: nowrap;
   align-items: center;
-<<<<<<< Updated upstream
   overflow: hidden;
   box-sizing: border-box;
 }
-=======
-  box-sizing: border-box;  
- }
->>>>>>> Stashed changes
 
 .left-section {
   position: relative;
   height: 100%;
   min-height: 625px;
-<<<<<<< Updated upstream
   padding: 0px 10px 0 10px;
   font-size: 1.2rem;
   color: #043453;
   background-color: #51e2f5;
 }
-=======
-  padding: 0px;
-  margin: 0px;
-  font-size: 1.3rem;
-  color: #043453;
-  background-color: #51e2f5;
-   box-sizing: border-box;
-  }
->>>>>>> Stashed changes
 
 .central-section {
   position: relative;
@@ -355,15 +305,9 @@ label {
   position: relative;
   height: 100%;
   width: 100%;
-<<<<<<< Updated upstream
   padding: 0px 0px 10px 10px;
   font-size: 1.1em;
   line-height: 100%;
-=======
-  padding: 0px 0px 0px 10px;
-  font-size: 1.2em;
-  line-height: 1.0;
->>>>>>> Stashed changes
   font-weight: 900;
   color: #043453;
 }
