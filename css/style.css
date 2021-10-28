@@ -11,51 +11,7 @@ html {
 
 
 
-@media only screen and (max-width: 550px) {
-  .header-nav ul {
-    width: 100%;
-    position: relative;
-    flex-direction: column;
-  }
 
-  .menu-span {
-    width: 100%;
-  }
-
-  .image-CV {
-    position: relative;
-    height: auto;
-    width: 100%;
-  }
-.left-section {
-  height: auto;
-  width: 100%;
-  font: 1.3rem
-}
-
-  h1 {
-    font-size: 1.6em;
-  }
-
-  .header-section {
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
-
-  .main-section {
-    flex-direction: column;
-  }
-
-  .left-section {
-    height: auto;
-    width: 100%;
-  }
-
-  .central-section {
-    padding: 5px;
-    font-size: 0.8em;
-  }
-}
 
 
 /*-----------------------------------------------------------------------*/
@@ -181,15 +137,16 @@ header {
   justify-content: space-around;
   align-items: center;
   transition: 0s;
+  overflow: hidden;
 }
 
 .menu-span {
   position: absolute;
-  top: 15px;
   left: 5px;
   height: 50px;
   width: 35px;
   box-sizing: border-box;
+  opacity: 0; 
 }
 
 .menu-span span {
@@ -198,7 +155,6 @@ header {
   width: 33px;
   height: 4px;
   margin-bottom: 5px;
-
   background: #22285c;
   border-radius: 3px;
   z-index: 1;
@@ -218,7 +174,7 @@ header {
 .menu-span span {
   opacity: 1;
   transform: rotate(45deg) translate(-10px, -10px);
-  background: #22285c;
+ 
 }
 
 
@@ -244,11 +200,9 @@ header {
   display: block;
   width: 55px;
   height: 100%;
-
   top: 5px;
   left: 1px;
   cursor: pointer;
-
   opacity: 0;
   /* hide this */
   z-index: 2;
@@ -263,11 +217,13 @@ label {
   width: auto;
   font-size: 1.2rem;
   color: #22285c;
+ cursor: pointer;
 }
 
-#input:checked~#menu {
-  display: none;
+.lable-toggle {
+  visibility: hidden;
 }
+
 
 /*------------------------------MAIN---------------------------*/
 .main-section {
@@ -352,4 +308,66 @@ label {
 
 .image-rsschool:hover {
   filter: drop-shadow(0px 6px 5px rgb(99, 204, 190));
+}
+
+@media only screen and (max-width: 550px) {
+
+  #input:checked~#menu {
+    height: 0px;
+    opacity: 0;
+  }
+
+  .lable-toggle {
+    visibility: visible;
+  }
+
+ 
+
+  .header-nav ul {
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+  }
+
+  .menu-span {
+    
+    width: 100%;
+    opacity: 1;
+  }
+
+  
+  .image-CV {
+    position: relative;
+    height: auto;
+    width: 100%;
+  }
+
+  .left-section {
+    height: auto;
+    width: 100%;
+    font: 1.3rem
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+
+  .header-section {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .main-section {
+    flex-direction: column;
+  }
+
+  .left-section {
+    height: auto;
+    width: 100%;
+  }
+
+  .central-section {
+    padding: 5px;
+    font-size: 0.8em;
+  }
 }
