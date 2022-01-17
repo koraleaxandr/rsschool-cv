@@ -1,0 +1,30 @@
+.garage-container {
+    width: 100%;
+    font-size: 2.5vh;
+    color: ghostwhite;
+}
+
+.car-item-container {
+    display: flex;
+}
+
+.car-item-pagination {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.car-trademark {
+    margin-right: 10px;
+    font-size: 3vh;
+}
+
+.car-item {
+    width: 5%;
+    background-color: transparent;
+}
+
+.car-item svg {
+    width: 10vh;
+    height: 6vh;
+}

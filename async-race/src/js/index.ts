@@ -1,28 +1,14 @@
 import "../css/style.css";
 import "../css/footerstyle.css";
+import "../css/garage.css";
 
-const baseUrl = 'http://127.0.0.1:3000';
-const path = {
-    garage: '/garage'
-}
-//let queryParams: [{key:string, value:string}];
+import { renderGarage } from './/garage';
+const toGarageButton = document.getElementById('to-garage') as HTMLElement;
 
-const getQueryParamsString = (queryParams: [{key:string, value:string}] = []) =>{
-   queryParams.length ? `?${queryParams.map(x => `${x.key}=${x.value}`).join('&')}` : '';
-}
-
-const getCarsInGarage =async (queryParams) => {
-   const response = await fetch(`${baseUrl}${path.garage}${getQueryParamsString(queryParams)}`);
-   const data = await response.json();
-   console.log(data);
+const startFunction = () => {
+    renderGarage();
+toGarageButton.addEventListener('click', renderGarage);
 }
 
-getCarsInGarage();
 
-const getCarInGarageForId =async (carId: number) => {
-   const response = await fetch(`${baseUrl}${path.garage}?id=${carId}`);
-   const data = await response.json();
-   console.log(data);
-}
-
-getCarInGarageForId(3);
+startFunction();

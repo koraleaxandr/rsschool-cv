@@ -1,36 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <title>Async race</title>
-</head>
+import { getCarsInGarage, garageResponcedata } from "./apiquery";
+const garageContainer= document.querySelector('.garage-container') as HTMLElement ;
 
-<header>
-  <div class="select-page-container">
-    <button class="page-select" id="to-garage">TO GARAGE</button>
-    <button class="page-select" id="to-winners">TO WINNERS</button>
-  </div>  
-</header>
 
-<body>
-  <div class="create-car-container">
-<input type="text"class="car-model">
-<input type="color" class="car-color">
-<button class="create-car">CREATE</button>
-  </div>
-  <div class="create-car-container">
-<input type="text"class="car-model">
-<input type="color" class="car-color">
-<button class="update-car">UPDATE</button>
-  </div>
-  <div class="garage-container">#GARAGE
-    <div class="car-item-container">
-      <div class="car-item-pagination">
-      <p class="car-trademark"></p>
-      <p class="car-model"></p>      
+
+export const renderGarage = async() => {
+await getCarsInGarage();
+console.log(garageResponcedata);
+garageContainer.innerHTML = '';
+if (garageResponcedata.length) {
+garageResponcedata.forEach(element => {
+    const carItemColor = element.color;
+    const carItemContainer: HTMLElement = document.createElement('div');
+    const carItemContainerHTML = ` <div class="car-item-pagination">
+      <p class="car-trademark" data-id="${element.id}" >${element.name}</p>           
+      <button type="checkbox" class="start-car">START</button>
+      <button type="checkbox" class="stop-car">STOP</button>
       <button type="checkbox" class="select-car">Select car</button>
       </div>
       <div class="item-race-container">
@@ -44,7 +28,7 @@
 Created by potrace 1.15, written by Peter Selinger 2001-2017
 </metadata>
 <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
+fill="${carItemColor}" stroke="ghostwhite">
 <path d="M3525 5341 c-72 -18 -79 -28 -90 -121 -4 -30 -11 -62 -16 -71 -4 -9
 -97 -51 -206 -94 -774 -304 -1348 -540 -1603 -661 -163 -77 -222 -91 -421
 -104 -85 -5 -170 -14 -189 -20 -101 -32 -362 -58 -620 -63 l-115 -2 -47 -80
@@ -132,22 +116,10 @@ l26 0 -7 123 c-10 179 -15 207 -36 207 -10 0 -63 -48 -119 -107z"/>
 130 22 193 51 l64 29 -19 23 c-65 82 -198 227 -209 227 -7 0 -15 -4 -19 -9z"/>
 </g>
 </svg></div>
-      </div>
-    </div>
-  </div>
-  
-<footer class="footer">
-    <div class="footer-container">
-      <div class="footer-data">
-        <p class="copyright">©</p>
-        <p class="year">2021</p>
-        <a class="github-username" href="https://github.com/koraleaxandr/" target="_blank"
-          rel="noopener noreferrer">Alexandr Karatkevich</a>
-      </div>
+      </div>`;
+      carItemContainer.innerHTML = carItemContainerHTML;
+garageContainer.append(carItemContainer);
+});
 
-      <a class="rss-logo" href="https://rs.school/js/" target="_blank" rel="noopener noreferrer"></a>
-    </div>
-  </footer>
-</body>
-
-</html>
+}
+}
