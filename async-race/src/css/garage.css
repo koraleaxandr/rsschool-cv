@@ -11,8 +11,8 @@
     /* height: 30vh; */
     top: 25%;
     margin: 0 10vw;    
-    background: rgba(22, 41, 41, 0.8);
-  backdrop-filter: blur(5px);
+    background: rgba(22, 41, 41, 0.6);
+  backdrop-filter: blur(2px);
   font-size: 10vh;
   font-weight: 800;
   color: white;
@@ -74,7 +74,7 @@
 }
 
 .start-car {
-    background-color: lawngreen;
+    background-color: rgba(13, 209, 56, 0.877);
     color: orangered;
 }
 
@@ -85,4 +85,8 @@
 
 .select-car {
     background-color: rgb(126, 66, 126);
+}
+
+.remove-car {
+    background-color: rgba(231, 81, 12, 0.795);
 }

@@ -1,4 +1,4 @@
-import { getCarsInGarage, garageResponcedata } from "./apiquery";
+import { getCarsInGarage, garageResponcedata, removeCar } from "./apiquery";
 export const garageContainer= document.querySelector('.garage-container') as HTMLElement ;
 
 
@@ -13,9 +13,10 @@ garageResponcedata.forEach(element => {
     const carItemContainer: HTMLElement = document.createElement('div');
     const carItemContainerHTML = ` <div class="car-item-pagination">
       <p class="car-trademark" data-id="${element.id}" >№${element.id} ${element.name}</p>           
-      <button type="checkbox" class="start-car">START eng</button>
-      <button type="checkbox" class="stop-car">STOP</button>
-      <button type="checkbox" class="select-car">Select car</button>
+      <button type="checkbox" class="start-car" data-id="${element.id}">START eng</button>
+      <button type="checkbox" class="stop-car" data-id="${element.id}">STOP</button>
+      <button type="checkbox" class="select-car" data-id="${element.id}">Select car</button>
+      <button class="remove-car" data-id="${element.id}">remove car</button>
       </div>
       <div class="item-race-container">
       <div class="car-item"><?xml version="1.0" standalone="no"?>
@@ -118,6 +119,7 @@ l26 0 -7 123 c-10 179 -15 207 -36 207 -10 0 -63 -48 -119 -107z"/>
       carItemContainer.innerHTML = carItemContainerHTML;
 garageContainer.append(carItemContainer);
 });
+removeCar();
+}
+};
 
-}
-}
