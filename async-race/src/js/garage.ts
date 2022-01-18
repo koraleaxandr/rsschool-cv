@@ -12,8 +12,8 @@ garageResponcedata.forEach(element => {
     const carItemColor = element.color;
     const carItemContainer: HTMLElement = document.createElement('div');
     const carItemContainerHTML = ` <div class="car-item-pagination">
-      <p class="car-trademark" data-id="${element.id}" >${element.name}</p>           
-      <button type="checkbox" class="start-car">START</button>
+      <p class="car-trademark" data-id="${element.id}" >№${element.id} ${element.name}</p>           
+      <button type="checkbox" class="start-car">START eng</button>
       <button type="checkbox" class="stop-car">STOP</button>
       <button type="checkbox" class="select-car">Select car</button>
       </div>
@@ -24,11 +24,8 @@ garageResponcedata.forEach(element => {
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="1280.000000pt" height="640.000000pt" viewBox="0 0 1280.000000 640.000000"
  preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.15, written by Peter Selinger 2001-2017
-</metadata>
 <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="${carItemColor}" stroke="ghostwhite">
+fill="${carItemColor}" stroke="white" stroke-width="100">
 <path d="M3525 5341 c-72 -18 -79 -28 -90 -121 -4 -30 -11 -62 -16 -71 -4 -9
 -97 -51 -206 -94 -774 -304 -1348 -540 -1603 -661 -163 -77 -222 -91 -421
 -104 -85 -5 -170 -14 -189 -20 -101 -32 -362 -58 -620 -63 l-115 -2 -47 -80
@@ -116,6 +113,7 @@ l26 0 -7 123 c-10 179 -15 207 -36 207 -10 0 -63 -48 -119 -107z"/>
 130 22 193 51 l64 29 -19 23 c-65 82 -198 227 -209 227 -7 0 -15 -4 -19 -9z"/>
 </g>
 </svg></div>
+<div class="final-lap-flag"></div>
       </div>`;
       carItemContainer.innerHTML = carItemContainerHTML;
 garageContainer.append(carItemContainer);

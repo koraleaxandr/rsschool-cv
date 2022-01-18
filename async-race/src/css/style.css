@@ -35,12 +35,14 @@ button {
     margin-bottom: 15px;
 }
 
-.car-model {
+.car-model-create,
+.car-model-edit {
     min-width: 200px;
     margin-right: 10px;
 }
 
-.car-color {
+.car-color-create,
+.car-color-edit {
     margin-right: 10px;
 }
 
