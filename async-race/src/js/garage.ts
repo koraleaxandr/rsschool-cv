@@ -1,5 +1,5 @@
 import { getCarsInGarage, garageResponcedata } from "./apiquery";
-const garageContainer= document.querySelector('.garage-container') as HTMLElement ;
+export const garageContainer= document.querySelector('.garage-container') as HTMLElement ;
 
 
 

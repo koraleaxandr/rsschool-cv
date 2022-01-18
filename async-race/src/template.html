@@ -17,6 +17,7 @@
 </header>
 
 <body>
+  <div class="warning off hidden" id="warning-message">Input Car Model!</div>
   <div class="create-car-container">
     <input type="text" class="car-model-create">
     <input type="color" class="car-color-create">
@@ -28,11 +29,17 @@
     <button class="update-car">UPDATE</button>
   </div>
   <div class="race-container">
-    <button class="start-race-button">START RACE</button>
+    <div class="garage-total">
+    <p>GARAGE<span class="total-count"></span></p>
+    <p>Page<span class="page-count">#1</span></p>
+    </div>
     <button class="next-page-button">NEXT PAGE</button>
     <button class="prev-page-button">PREV PAGE ^</button>
+    <button class="start-race-button">START RACE</button>
+    <button class="reset-garage">RESET</button>
+    <button class="generate-cars">Generate cars</button>
   </div>
-  <div class="garage-container">#GARAGE
+  <div class="garage-container">
     <div class="car-item-container">
       <div class="car-item-pagination">
         <p class="car-trademark"></p>

@@ -1,7 +1,13 @@
 const baseUrl = 'http://127.0.0.1:3000';
-const path = {
-    garage: '/garage'
-};
+const path = {garage: '/garage'};
+export let garageResponcedata:CarItem[] = [];
+
+/************************************************************************** */
+const warningDiv = document.getElementById('warning-message') as HTMLElement;
+const totalCountString  = document.querySelector('.total-count') as HTMLElement;
+const carColorCreate = document.querySelector('.car-color-create')as HTMLInputElement;
+const carModelCreate = document.querySelector('.car-model-create')as HTMLInputElement;
+/*************************************************************************** */
 
 interface CarItem  {
    id: string,
@@ -13,6 +19,12 @@ interface CarItem  {
 }
 
 class Car implements CarItem {
+   name: string;
+   id: string;
+   color: string;
+   status: string;
+   wins: string;
+   time: string;
    constructor(id: string, name: string, color: string, status: string, wins: string, time: string,) {
       this.id = id;
       this.name = name;
@@ -23,7 +35,7 @@ class Car implements CarItem {
 
    }
 }
-export let garageResponcedata:CarItem[] = [];
+
 //let queryParams: [{key:string, value:string}];
 
 // const getQueryParamsString = (queryParams = []) =>{
@@ -33,6 +45,7 @@ export let garageResponcedata:CarItem[] = [];
 export const getCarsInGarage = async () => {
    const response = await fetch(`${baseUrl}${path.garage}`);
    garageResponcedata = await response.json();
+   totalCountString.textContent = ` (${garageResponcedata.length})`
  //console.log(garageResponcedata); 
  //return garageResponcedata; 
 };
@@ -45,19 +58,53 @@ export const getCarInGarageForId =async (carId: string) => {
    console.log(data);
 };
 
-// export const createCar = () => {
-// const carModelCreate = document.querySelector('.car-model-create')as HTMLInputElement;
-// const newCarName: string = carModelCreate.value;
-// if (!newCarModel) return;
-// const carColorCreate = document.querySelector('.car-color-create')as HTMLInputElement;
-// const newCarColor: string = carColorCreate.value;
-// const newCarID: string = (garageResponcedata.length + 1).toString();
+//****************************WARNING*************************** */
+const getWarning = (message: string) => { 
+   warningDiv.textContent = message;
+ warningDiv.classList.remove('off');
+ warningDiv.classList.remove('hidden');
 
-// const car = new Car({id: newCarID,
-//    name: newCarName,
-//    color: newCarColor,
-//    status: 'stopped',
-//    wins: '',
-//    time: ''});
-// console.log(car);
-// };
+setTimeout(() => {
+ warningDiv.classList.add('hidden');  
+}, 3000);
+setTimeout(() => {
+  warningDiv.classList.add('off');
+}, 4000);
+};
+
+/*******************************************CREATE CAR**************** */
+export const createCar =  async() => {
+const newCarName: string = carModelCreate.value;
+if (!newCarName) {
+    getWarning('Input Car Model!');
+   return;
+}
+const newCarColor: string = carColorCreate.value;
+const newCarID: string = (garageResponcedata.length + 1).toString();
+const car = new Car(newCarID,
+   newCarName,
+   newCarColor,
+  'stopped',
+  '',
+  '');
+console.log(car);
+carModelCreate.value = '';
+const response = await fetch(`${baseUrl}${path.garage}`, {
+   method: 'POST',
+   headers: {'Content-Type': 'application/json',
+},
+body: JSON.stringify(car),
+});
+console.log(response);
+   const newcar = await response.json();
+   getCarsInGarage();
+   return newcar;
+};
+
+//---------------------------------------
+const createCarButton = document.querySelector('.create-car') as HTMLElement;
+createCarButton.addEventListener('click', ()=>{
+    createCar();
+});
+
+/*************************************************************************** */

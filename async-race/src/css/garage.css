@@ -1,7 +1,24 @@
 .garage-container {
+    position: relative;
     width: 100%;
     font-size: 2.5vh;
     color: ghostwhite;
+}
+
+.warning {
+    position: absolute;
+    width: 80vw;
+    /* height: 30vh; */
+    top: 25%;
+    margin: 0 10vw;    
+    background: rgba(22, 41, 41, 0.8);
+  backdrop-filter: blur(5px);
+  font-size: 10vh;
+  font-weight: 800;
+  color: white;
+  text-align: center;
+  z-index: 1;
+  transition: all 1.2s;
 }
 
 .car-item-container {
