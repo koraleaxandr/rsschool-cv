@@ -19,18 +19,18 @@ interface CarItem {
    id: string,
       name: string,
       color: string,
-      status: string,
-      wins: string,
-      time: string,
+      status?: string,
+      wins?: string,
+      time?: string,
 }
 
 class Car implements CarItem {
    name: string;
    id: string;
    color: string;
-   status: string;
-   wins: string;
-   time: string;
+   status?: string;
+   wins?: string;
+   time?: string;
    constructor(id: string, name: string, color: string, status: string, wins: string, time: string, ) {
       this.id = id;
       this.name = name;
@@ -61,7 +61,9 @@ export const getCarsInGarage = async () => {
 export const getCarInGarageForId = async (carId: string) => {
    const response = await fetch(`${baseUrl}${path.garage}?id=${carId}`);
    const data = await response.json();
-   console.log(data);
+  // const currentCar = new Car(data[0]);
+   //console.log(currentCar)
+   //return currentCar;
 };
 
 //****************************WARNING*************************** */
@@ -92,7 +94,7 @@ export const createCar = async () => {
       'stopped',
       '',
       '');
-   console.log(car);
+   //console.log(car);
    carModelCreate.value = '';
    const response = await fetch(`${baseUrl}${path.garage}`, {
       method: 'POST',
@@ -107,8 +109,11 @@ export const createCar = async () => {
    return newcar;
 };
 
-//---------------------------------------
+//-------------------------------------------------------------
 const createCarButton = document.querySelector('.create-car') as HTMLElement;
+//const editCarButton = document.querySelector('.edit-car') as HTMLElement;
+
+//-------------------------------------------------------------
 createCarButton.addEventListener('click', () => {
    createCar();
 });
@@ -128,4 +133,14 @@ export const removeCar = () => {
          renderGarage();
       })
    });
+};
+
+export const selectCar = () => {
+  const selectCarButtons: NodeListOf < Element > = document.querySelectorAll('.select-car');
+  selectCarButtons.forEach((element) => {
+    element.addEventListener('click', async() => {
+      const carId = element.getAttribute('data-id') as string; 
+      getCarInGarageForId(carId);
+    })
+  });
 };

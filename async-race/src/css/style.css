@@ -6,6 +6,8 @@ html {
 * {    
    box-sizing: border-box;
    margin: 0;
+   padding: 0;
+   border: none;
 }
 
 .hidden {
@@ -40,8 +42,10 @@ body {
 }
 button {
     max-height: 6vh;
-   font-size: 2.5vh;
-   border-radius: 15px;
+   font-size: 2.3vh;
+   border-radius: 8px;
+   padding: 2px;
+   margin: 2px;
 }
 
 .select-page-container,
@@ -58,7 +62,7 @@ button {
 .car-model-edit {
     min-width: 200px;
     margin-right: 10px;
-    font-size: 3vw;
+    font-size: 1rem;
     text-transform: uppercase;
 }
 
@@ -78,7 +82,7 @@ button {
 .race-container {
     display: flex;
     flex-wrap: wrap;
-    font-size: 3vh;
+    font-size: 2.5vh;
     color: rgb(26, 241, 7);
     align-items: center;
 }

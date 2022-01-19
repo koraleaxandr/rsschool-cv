@@ -12,6 +12,7 @@
     top: 25%;
     margin: 0 10vw;    
     background: rgba(22, 41, 41, 0.6);
+    border-radius: 15px;
   backdrop-filter: blur(2px);
   font-size: 10vh;
   font-weight: 800;
@@ -27,7 +28,7 @@
 
 .car-item-pagination {
     display: flex;
-    height: 6vh;
+    height: 4vh;
     flex-wrap: nowrap;
     justify-content: start;
     align-items: center;
