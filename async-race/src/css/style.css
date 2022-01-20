@@ -18,6 +18,10 @@ html {
     display: none;
 }
 
+.active {
+    opacity: 1;
+}
+
 header {
     position: fixed;
     width: 100%;
@@ -49,9 +53,14 @@ button {
 }
 
 .select-page-container,
-.create-car-container {
+.create-car-container,
+.update-car-container {
     position: relative;
     margin-bottom: 15px;
+}
+
+.update-car-container {
+    opacity: 0.3;
 }
 
 /* .create-car-container {
@@ -62,13 +71,18 @@ button {
 .car-model-edit {
     min-width: 200px;
     margin-right: 10px;
-    font-size: 1rem;
-    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(13, 6, 119);
 }
 
 .car-color-create,
 .car-color-edit {
+    width: 27px;
+    height: 27px;
     margin-right: 10px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .create-car {
@@ -77,6 +91,7 @@ button {
 
 .update-car {
     background-color: cornflowerblue;
+    color: white;
 }
 
 .race-container {

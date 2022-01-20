@@ -76,7 +76,7 @@
 
 .start-car {
     background-color: rgba(13, 209, 56, 0.877);
-    color: orangered;
+    color: rgb(254, 255, 204);
 }
 
 .stop-car {
@@ -86,6 +86,7 @@
 
 .select-car {
     background-color: rgb(126, 66, 126);
+    color: white;
 }
 
 .remove-car {

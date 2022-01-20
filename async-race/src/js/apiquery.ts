@@ -2,9 +2,10 @@ import {
    renderGarage
 } from "./garage";
 
-const baseUrl = 'http://127.0.0.1:3000';
-const path = {
-   garage: '/garage'
+export const baseUrl = 'http://127.0.0.1:3000';
+export const path = {
+   garage: '/garage',
+   engine: '/engine',
 };
 export let garageResponcedata: CarItem[] = [];
 
@@ -60,10 +61,9 @@ export const getCarsInGarage = async () => {
 
 export const getCarInGarageForId = async (carId: string) => {
    const response = await fetch(`${baseUrl}${path.garage}?id=${carId}`);
-   const data = await response.json();
-  // const currentCar = new Car(data[0]);
-   //console.log(currentCar)
-   //return currentCar;
+   const data = await response.json() as CarItem[];  
+   console.log(data)
+   return data;
 };
 
 //****************************WARNING*************************** */
@@ -81,6 +81,8 @@ const getWarning = (message: string) => {
 };
 
 /*******************************************CREATE CAR**************** */
+const createCarButton = document.querySelector('.create-car') as HTMLElement;
+
 export const createCar = async () => {
    const newCarName: string = carModelCreate.value;
    if (!newCarName) {
@@ -94,7 +96,7 @@ export const createCar = async () => {
       'stopped',
       '',
       '');
-   //console.log(car);
+   console.log(JSON.stringify(car));
    carModelCreate.value = '';
    const response = await fetch(`${baseUrl}${path.garage}`, {
       method: 'POST',
@@ -108,11 +110,6 @@ export const createCar = async () => {
    renderGarage();
    return newcar;
 };
-
-//-------------------------------------------------------------
-const createCarButton = document.querySelector('.create-car') as HTMLElement;
-//const editCarButton = document.querySelector('.edit-car') as HTMLElement;
-
 //-------------------------------------------------------------
 createCarButton.addEventListener('click', () => {
    createCar();
@@ -135,12 +132,57 @@ export const removeCar = () => {
    });
 };
 
+//-------------------------------------------------------------
+const editCarButton = document.querySelector('.update-car') as HTMLElement;
+const editcarModelButton = document.querySelector('.car-model-edit') as HTMLInputElement;
+const editcarColorButton = document.querySelector('.car-color-edit') as HTMLInputElement;
+const updateCarContainer = document.querySelector('.update-car-container') as HTMLElement;
+
+//---------------------------SELECT CAR----------------------------
+
 export const selectCar = () => {
   const selectCarButtons: NodeListOf < Element > = document.querySelectorAll('.select-car');
   selectCarButtons.forEach((element) => {
     element.addEventListener('click', async() => {
       const carId = element.getAttribute('data-id') as string; 
-      getCarInGarageForId(carId);
+      const data = await getCarInGarageForId(carId);
+      console.log(data[0]);
+      const currentCar = data[0] as CarItem;
+      editcarModelButton.value = currentCar.name;
+      editcarColorButton.value = currentCar.color;
+      editCarButton.setAttribute('data-id',carId);
+     updateCarContainer.style.opacity = '1';
     })
   });
 };
+
+/******************************UPDATE CAR************************** */
+
+const updateCar = async() =>{
+   const carId = editCarButton.getAttribute('data-id') as string;
+   const data = await getCarInGarageForId(carId);
+     const currentCar = data[0] as CarItem;   
+     currentCar.name = editcarModelButton.value;
+      currentCar.color = editcarColorButton.value;      
+   const response = await fetch(`${baseUrl}${path.garage}/${carId}`, {
+            method: 'PUT',
+            headers: {
+         'Content-Type': 'application/json',
+      },
+            body: JSON.stringify(currentCar),
+         });
+         editcarModelButton.value = '';
+         updateCarContainer.style.opacity = '0.3';
+         renderGarage();
+         return response;
+};
+
+editCarButton.addEventListener('click', () =>{
+   if (editcarModelButton.value) {
+   updateCar();
+   } else {
+    getWarning('Please select CAR!'); 
+   }
+});
+
+/*********************************************************************** */

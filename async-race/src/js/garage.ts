@@ -1,4 +1,5 @@
 import { getCarsInGarage, garageResponcedata, removeCar, selectCar } from "./apiquery";
+import { startRaceListening } from "./racing";
 export const garageContainer= document.querySelector('.garage-container') as HTMLElement ;
 
 
@@ -13,10 +14,10 @@ garageResponcedata.forEach(element => {
     const carItemContainer: HTMLElement = document.createElement('div');
     const carItemContainerHTML = ` <div class="car-item-pagination">
       <p class="car-trademark" data-id="${element.id}" >${element.name}</p>           
-      <button type="checkbox" class="start-car" data-id="${element.id}">START eng</button>
+      <button type="checkbox" class="start-car" data-id="${element.id}">START</button>
       <button type="checkbox" class="stop-car" data-id="${element.id}">STOP</button>
-      <button type="checkbox" class="select-car" data-id="${element.id}">Select car</button>
-      <button class="remove-car" data-id="${element.id}">remove car</button>
+      <button type="checkbox" class="select-car" data-id="${element.id}">Select</button>
+      <button class="remove-car" data-id="${element.id}">remove</button>
       </div>
       <div class="item-race-container">
       <div class="car-item"><?xml version="1.0" standalone="no"?>
@@ -121,6 +122,7 @@ garageContainer.append(carItemContainer);
 });
 removeCar();
 selectCar();
+startRaceListening();
 }
 };
 
