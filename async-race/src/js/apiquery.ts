@@ -44,6 +44,15 @@ class Car implements CarItem {
    }
 }
 
+/*************************************GET INDEX NODELIST ELEMENTS************** */
+
+export const getIndexNodeElements =  (nodeList: NodeListOf < HTMLElement >, element:HTMLElement): number => {
+   const index= Array.prototype.indexOf.call(nodeList, element)
+if (index) {
+   return index;
+} else return -1;
+};
+
 /**************************************GETCARS**************************************** */
 export const getCarsInGarage = async (page: number, limit = '7') => {
    const response = await fetch(`${baseUrl}${path.garage}?_page=${page}&_limit=${limit}`);
@@ -63,7 +72,7 @@ export const getCarInGarageForId = async (carId: string) => {
 };
 
 //****************************WARNING*************************** */
-const getWarning = (message: string) => {
+export const getWarning = (message: string) => {
    warningDiv.textContent = message;
    warningDiv.classList.remove('off');
    warningDiv.classList.remove('hidden');
