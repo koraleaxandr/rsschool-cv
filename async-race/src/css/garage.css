@@ -22,6 +22,14 @@
   transition: all 1.2s;
 }
 
+.next-page-button,
+.prev-page-button {
+    opacity: 0.3;
+    background-color: cadetblue;
+    color: white;
+    font-size: 1rem;
+}
+
 .car-item-container {
     display: block;
 }
@@ -82,6 +90,7 @@
 .stop-car {
     background-color: orangered;
     color: white;
+    opacity: 0.3;
 }
 
 .select-car {

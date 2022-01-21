@@ -8,6 +8,7 @@ export const path = {
    engine: '/engine',
 };
 export let garageResponcedata: CarItem[] = [];
+export let totalCars: number;
 
 /************************************************************************** */
 const warningDiv = document.getElementById('warning-message') as HTMLElement;
@@ -43,22 +44,17 @@ class Car implements CarItem {
    }
 }
 
-//let queryParams: [{key:string, value:string}];
-
-// const getQueryParamsString = (queryParams = []) =>{
-//    queryParams.length ? `?${queryParams.map(x => `${x.key}=${x.value}`).join('&')}` : '';
-// }
-
-export const getCarsInGarage = async () => {
-   const response = await fetch(`${baseUrl}${path.garage}`);
+/**************************************GETCARS**************************************** */
+export const getCarsInGarage = async (page: number, limit = '7') => {
+   const response = await fetch(`${baseUrl}${path.garage}?_page=${page}&_limit=${limit}`);
    garageResponcedata = await response.json();
-   totalCountString.textContent = ` (${garageResponcedata.length})`
+   totalCars = Number(response.headers.get('X-Total-Count'))
+   totalCountString.textContent = ` (${totalCars})`;
    //console.log(garageResponcedata); 
    //return garageResponcedata; 
 };
 
-//getCarsInGarage();
-
+//----------------------------------------------------------------------
 export const getCarInGarageForId = async (carId: string) => {
    const response = await fetch(`${baseUrl}${path.garage}?id=${carId}`);
    const data = await response.json() as CarItem[];  
