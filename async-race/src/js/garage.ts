@@ -19,10 +19,10 @@ const nextPageButton = document.querySelector('.next-page-button') as HTMLElemen
 const prevPageButton = document.querySelector('.prev-page-button') as HTMLElement;
 
 
-
+/**************************************************************** */
 export const renderGarage = async () => {
       await getCarsInGarage(page);
-      console.log(garageResponcedata);
+      // console.log(garageResponcedata);
       garageContainer.innerHTML = '';
       if (garageResponcedata.length) {
             garageResponcedata.forEach(element => {
@@ -41,10 +41,11 @@ export const renderGarage = async () => {
                   carItemContainer.innerHTML = carItemContainerHTML;
                   garageContainer.append(carItemContainer);
             });
-            changePage();
             removeCar();
             selectCar();
             startRaceListening();
+            changePage();
+            return;
       }
 };
 
@@ -55,18 +56,8 @@ const changePage = () => {
       prevPageButton.style.opacity = "0.3";
       nextPageButton.style.opacity = '0.3';
       const totalPages = (totalCars / 7);
-      nextPageButton.addEventListener('click', () => {
-            if (page < totalPages) {
-                  page += 1;
-                  renderGarage();
-            } else return;
-      });
-      prevPageButton.addEventListener('click', () => {
-            if (page > 1) {
-                  page -= 1;
-                  renderGarage();
-            } else return;
-      });
+      nextPageButton.addEventListener('click', nextPage, false);
+      prevPageButton.addEventListener('click', prevPage, false);
       currentPageNumber.innerHTML = `#${page}`;
       if (totalPages > 1 && page < totalPages) {
             nextPageButton.style.opacity = '1';
@@ -74,5 +65,25 @@ const changePage = () => {
       }
       if (page > 1) {
             prevPageButton.style.opacity = "1"
-      } else prevPageButton.style.opacity = "0.3"
+      } else prevPageButton.style.opacity = "0.3";
+      return;
 };
+
+const nextPage = () => {
+      const totalPages = (totalCars / 7);
+      if (page < totalPages) {
+            page += 1;
+            console.log(page);
+            renderGarage();
+            return;
+      } else return;
+};
+
+const prevPage = () => {
+            if (page > 1) {
+                  page = page - 1;
+                  console.log(page);
+                  renderGarage();
+                  return;
+            } else return;
+      };
