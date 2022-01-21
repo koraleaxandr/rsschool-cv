@@ -67,7 +67,7 @@ export const getCarsInGarage = async (page: number, limit = '7') => {
 export const getCarInGarageForId = async (carId: string) => {
    const response = await fetch(`${baseUrl}${path.garage}?id=${carId}`);
    const data = await response.json() as CarItem[];  
-   console.log(data)
+  // console.log(data)
    return data;
 };
 
@@ -124,7 +124,7 @@ createCarButton.addEventListener('click', () => {
 
 export const removeCar = () => {
    const removeCarButtons: NodeListOf < Element > = document.querySelectorAll('.remove-car');
-   removeCarButtons.forEach((element) => {
+   removeCarButtons.forEach((element): void => {
       element.addEventListener('click', async () => {
          const carID = element.getAttribute('data-id');
          const response = await fetch(`${baseUrl}${path.garage}/${carID}`, {
@@ -151,7 +151,7 @@ export const selectCar = () => {
     element.addEventListener('click', async() => {
       const carId = element.getAttribute('data-id') as string; 
       const data = await getCarInGarageForId(carId);
-      console.log(data[0]);
+     // console.log(data[0]);
       const currentCar = data[0] as CarItem;
       editcarModelButton.value = currentCar.name;
       editcarColorButton.value = currentCar.color;
