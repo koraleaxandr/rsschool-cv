@@ -101,7 +101,7 @@ export const createCar = async () => {
       'stopped',
       '',
       '');
-   console.log(JSON.stringify(car));
+   //console.log(JSON.stringify(car));
    carModelCreate.value = '';
    const response = await fetch(`${baseUrl}${path.garage}`, {
       method: 'POST',

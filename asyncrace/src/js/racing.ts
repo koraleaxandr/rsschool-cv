@@ -167,4 +167,3 @@ const endRace = (totalCarsEndRace: number, totalCarsRacing: number) =>{
         WINNER-ID${raceEndItems[0]?.carId}`);
     }
 };
-
