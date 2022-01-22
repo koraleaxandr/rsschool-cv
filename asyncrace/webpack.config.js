@@ -54,7 +54,7 @@ const baseConfig = {
     },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js'
+    filename: 'index_bundle.js'
   },
   plugins: [
          new CleanWebpackPlugin(),
