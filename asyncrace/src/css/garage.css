@@ -51,6 +51,7 @@
     position: absolute;
     width: 10%;
     height: 5vh;
+    border-radius: 8px;
     background-color: transparent;
 }
 
@@ -75,7 +76,7 @@
     position: absolute;
     width: 5vh;
     height: 5vh;
-    right: 15%;
+    right: 12%;
     background-color: transparent ;
     background-image: url(./assets/svg/Checkered-Racing-Flags.svg);
     background-size: contain;

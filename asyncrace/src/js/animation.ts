@@ -42,3 +42,21 @@ export const getCarsAnimations = () => {
   });
   return carAnimations;
 };
+/****************************ENGINE BROKEN ANIMATION***** */
+export const brockenEngineAnimation = (index: number) => {
+    const carItems : NodeListOf < HTMLElement > = document.querySelectorAll('.car-item');
+    const currentCar = carItems[index] as HTMLElement;
+    const animation = currentCar.animate([
+  { // from
+   // left: '0',
+    backgroundColor: "transparent"
+  },
+  { // to
+  backgroundColor: "orange"
+  }
+], {
+    id: `brokenEngine${index}`,
+    duration:800,
+   iterations: Infinity,});
+return animation;
+};
