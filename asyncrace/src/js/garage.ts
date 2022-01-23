@@ -12,6 +12,8 @@ import {
       carItemImage,
       carItemHtml
 } from "./data";
+import { winnersContainer, bigGarageContainer} from "./winners";
+
 export const garageContainer = document.querySelector('.garage-container') as HTMLElement;
 let page = 1;
 const currentPageNumber = document.querySelector('.page-count') as HTMLElement;
@@ -22,6 +24,8 @@ const prevPageButton = document.querySelector('.prev-page-button') as HTMLElemen
 /**************************************************************** */
 export const renderGarage = async () => {
       await getCarsInGarage(page);
+      winnersContainer?.classList.add('off');
+      bigGarageContainer?.classList.remove('off');
       // console.log(garageResponcedata);
       garageContainer.innerHTML = '';
       if (garageResponcedata.length) {

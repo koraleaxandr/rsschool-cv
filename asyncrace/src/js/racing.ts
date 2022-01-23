@@ -1,6 +1,7 @@
 import {baseUrl, getWarning, path} from "./apiquery";
-import { carDriveAnimation, getCarsAnimations, brockenEngineAnimation } from "./animation";
+import { carDriveAnimation, getCarsAnimations, brockenEngineAnimation, winnerAnimation } from "./animation";
 import { renderGarage } from "./garage";
+import { getWinner } from "./winners";
 
 /*************************************************************** */
 const startGlobalRaceButton = document.querySelector('.start-race-button') as HTMLElement;
@@ -14,6 +15,8 @@ export type RaceItemData = {
         distance: number
     },
     index: number,
+    startRaceTime: number;
+    elapsedRaceTime: number;
 }
 const raceEndItems: RaceItemData[] = [];
 
@@ -24,16 +27,18 @@ const getEngine = async (carId: string, status: string, index: number) => {
     });
     if (response.status === 200 && status === 'started') {
         const data = await response.json();
+        const startRaceTime = performance.now();
         const raceItemData: RaceItemData = {
             carId,
             data,
-            index
+            index,
+            startRaceTime,
+           elapsedRaceTime:0,
         };
         console.log(raceItemData);
         getDriveMode(raceItemData);
         return raceItemData;
-    } else {
-        console.log(response.statusText);
+    } else {       
         return;
     }
 };
@@ -69,15 +74,18 @@ export const startRaceListening = () => {
 
 /*********************************START RACE************** */
 let totalCarsEndRace = 0;
+let raceWasStopped = false;
 
 const startGlobalRace = () => {
+    raceWasStopped = false;
     raceEndItems.length = 0;
     totalCarsEndRace = 0;
     const carsAnimations = getCarsAnimations();
         if (carsAnimations.length){
             carsAnimations.forEach(element => {
-               element.cancel();                            
+               element.cancel();
             });
+            renderGarage();
         }
     const startButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.start-car');
     startButtons.forEach(async (element) => {
@@ -90,16 +98,16 @@ startGlobalRaceButton.addEventListener('click', startGlobalRace);
 /***********************STOP RACE***************** */
 
 const stopGlobalRace = () => {
+    raceWasStopped = true;
     const stopButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.stop-car');
     stopButtons.forEach(async (element) => {
         element.click();
         const carsAnimations = getCarsAnimations();
         if (carsAnimations.length){
-            carsAnimations.forEach(element => {
+            carsAnimations.forEach((element) => {
                element.cancel();
-               renderGarage();               
             });
-            
+          renderGarage(); 
         }
     });
 };
@@ -111,7 +119,7 @@ stopGlobalRaceButton.addEventListener('click', stopGlobalRace);
 
 const getDriveMode = async (raceItemData: RaceItemData) => {
     const currentCarAnimation = carDriveAnimation(raceItemData);
-    currentCarAnimation.play();
+    currentCarAnimation.play();    
     const response = await fetch(`${baseUrl}${path.engine}?id=${raceItemData.carId}&status=drive`, {
         method: 'PATCH'
     });
@@ -121,6 +129,8 @@ const getDriveMode = async (raceItemData: RaceItemData) => {
     const currentStartButton = startButtons[raceItemData.index] as HTMLElement;
     const totalCarsRacing: number = startButtons.length;    
     if (response.status === 200) {
+        const elapsedTime = performance.now() - raceItemData.startRaceTime;
+        raceItemData.elapsedRaceTime = elapsedTime;
         console.log(`Car ID =${raceItemData.carId} DRIVE OK`);
         currentStartButton.style.opacity = '1';
         currentStopButton.style.opacity = '0.3';
@@ -160,10 +170,14 @@ const getDriveMode = async (raceItemData: RaceItemData) => {
     }
 };
 
-const endRace = (totalCarsEndRace: number, totalCarsRacing: number) =>{
+const endRace = (totalCarsEndRace: number, totalCarsRacing: number) => {
     console.log(totalCarsEndRace);    
-    if (totalCarsEndRace == totalCarsRacing) {
-        getWarning(`END RACE
-        WINNER-ID${raceEndItems[0]?.carId}`);
-    }
+    if (totalCarsEndRace == totalCarsRacing && !raceWasStopped && raceEndItems[0]) {
+        getWarning(`END RACE WINNER-ID${raceEndItems[0]?.carId}`);
+        const index =raceEndItems[0]?.index
+        if (index !== undefined){
+        const winAnimation = winnerAnimation(index);
+        winAnimation.play();
+        getWinner(raceEndItems[0]);
+    }}
 };

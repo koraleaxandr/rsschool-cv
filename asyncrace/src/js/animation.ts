@@ -16,7 +16,7 @@ export const carDriveAnimation = (raceItemData: RaceItemData) => {
     //color: "#fff"
   },
   { // to
-   left: '85%',
+   left: '87%',
    // color: "#000"
   }
 ], {
@@ -46,9 +46,10 @@ export const getCarsAnimations = () => {
 export const brockenEngineAnimation = (index: number) => {
     const carItems : NodeListOf < HTMLElement > = document.querySelectorAll('.car-item');
     const currentCar = carItems[index] as HTMLElement;
+    currentCar.textContent = 'Check Engine!';
     const animation = currentCar.animate([
-  { // from
-   // left: '0',
+  { // from 
+      
     backgroundColor: "transparent"
   },
   { // to
@@ -56,6 +57,27 @@ export const brockenEngineAnimation = (index: number) => {
   }
 ], {
     id: `brokenEngine${index}`,
+    duration:800,
+   iterations: Infinity,});
+return animation;
+};
+
+/******************Winner ANIMATION******** */
+
+export const winnerAnimation = (index: number) => {
+    const carItems : NodeListOf < HTMLElement > = document.querySelectorAll('.car-item');
+    const currentCar = carItems[index] as HTMLElement;
+    currentCar.textContent = 'WINNER!';
+    const animation = currentCar.animate([
+  { // from 
+      
+    backgroundColor: "transparent"
+  },
+  { // to
+  backgroundColor: "red"
+  }
+], {
+    id: `winner${index}`,
     duration:800,
    iterations: Infinity,});
 return animation;

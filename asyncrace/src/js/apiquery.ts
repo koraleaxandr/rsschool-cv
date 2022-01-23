@@ -6,6 +6,7 @@ export const baseUrl = 'http://127.0.0.1:3000';
 export const path = {
    garage: '/garage',
    engine: '/engine',
+   winners: '/winners'
 };
 export let garageResponcedata: CarItem[] = [];
 export let totalCars: number;
@@ -87,7 +88,7 @@ export const getWarning = (message: string) => {
 
 /*******************************************CREATE CAR**************** */
 const createCarButton = document.querySelector('.create-car') as HTMLElement;
-
+//-------------------------------------------------
 export const createCar = async () => {
    const newCarName: string = carModelCreate.value;
    if (!newCarName) {
