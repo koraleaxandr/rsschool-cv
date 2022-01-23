@@ -12,6 +12,8 @@ import {
       carItemImage,
       carItemHtml
 } from "./data";
+import { winnersContainer, bigGarageContainer} from "./winners";
+
 export const garageContainer = document.querySelector('.garage-container') as HTMLElement;
 let page = 1;
 const currentPageNumber = document.querySelector('.page-count') as HTMLElement;
@@ -22,6 +24,8 @@ const prevPageButton = document.querySelector('.prev-page-button') as HTMLElemen
 /**************************************************************** */
 export const renderGarage = async () => {
       await getCarsInGarage(page);
+      winnersContainer?.classList.add('off');
+      bigGarageContainer?.classList.remove('off');
       // console.log(garageResponcedata);
       garageContainer.innerHTML = '';
       if (garageResponcedata.length) {
@@ -30,13 +34,13 @@ export const renderGarage = async () => {
                   const carItemContainer: HTMLElement = document.createElement('div');
                   const carItemContainerHTML = ` <div class="car-item-pagination">
       <p class="car-trademark" data-id="${element.id}" >${element.name}</p>           
-      <button type="checkbox" class="start-car" data-id="${element.id}">START</button>
+      <button type="checkbox" class="start-car" data-id="${element.id}" data-name="${element.name}">START</button>
       <button type="checkbox" class="stop-car" data-id="${element.id}">STOP</button>
       <button type="checkbox" class="select-car" data-id="${element.id}">Select</button>
       <button class="remove-car" data-id="${element.id}">remove</button>
       </div>
       ${carItemHtml}
-      ${carItemColor}" stroke="white" stroke-width="100">
+      ${carItemColor}" stroke="white" stroke-width="200">
       ${carItemImage}`;
                   carItemContainer.innerHTML = carItemContainerHTML;
                   garageContainer.append(carItemContainer);
@@ -69,6 +73,8 @@ const changePage = () => {
       return;
 };
 
+/******************************************************************* */
+
 const nextPage = () => {
       const totalPages = (totalCars / 7);
       if (page < totalPages) {
@@ -79,6 +85,8 @@ const nextPage = () => {
       } else return;
 };
 
+/******************************************************************** */
+
 const prevPage = () => {
             if (page > 1) {
                   page = page - 1;
@@ -86,4 +94,6 @@ const prevPage = () => {
                   renderGarage();
                   return;
             } else return;
-      };
+};
+
+/************************************************************ */      
