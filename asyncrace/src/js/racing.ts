@@ -9,6 +9,7 @@ const stopGlobalRaceButton = document.querySelector('.reset-garage') as HTMLElem
 
 
 export type RaceItemData = {
+    carName: string,
     carId: string,
     data: {
         velocity: number,
@@ -21,7 +22,7 @@ export type RaceItemData = {
 const raceEndItems: RaceItemData[] = [];
 
 /**************************GET ENGINE******************************** */
-const getEngine = async (carId: string, status: string, index: number) => {
+const getEngine = async (carName: string, carId: string, status: string, index: number) => {
     const response = await fetch(`${baseUrl}${path.engine}?id=${carId}&status=${status}`, {
         method: 'PATCH'
     });
@@ -29,6 +30,7 @@ const getEngine = async (carId: string, status: string, index: number) => {
         const data = await response.json();
         const startRaceTime = performance.now();
         const raceItemData: RaceItemData = {
+            carName,
             carId,
             data,
             index,
@@ -51,20 +53,22 @@ export const startRaceListening = () => {
     startButtons.forEach((element) => {
         element.addEventListener('click', async () => {
             const carId = element.getAttribute('data-id') as string;
+            const carName = element.getAttribute('data-name') as string;
             element.style.opacity = '0.3';
             const index = Array.prototype.indexOf.call(startButtons, element);
             const currentStopButton = stopButtons[index] as HTMLElement;
             currentStopButton.style.opacity = '1';
             // console.log(index);
-            await getEngine(carId, 'started', index);
+            await getEngine(carName, carId, 'started', index);
         })
     });
     stopButtons.forEach((element) => {
         element.addEventListener('click', async () => {
             const carId = element.getAttribute('data-id') as string;
+            const carName = element.getAttribute('data-name') as string;
             const index = Array.prototype.indexOf.call(stopButtons, element);
             // console.log(carId);
-            await getEngine(carId, 'stopped', index);
+            await getEngine(carName, carId, 'stopped', index);
             element.style.opacity = '0.3';
             const currentStartButton = startButtons[index] as HTMLElement;
             currentStartButton.style.opacity = '1';
@@ -170,14 +174,18 @@ const getDriveMode = async (raceItemData: RaceItemData) => {
     }
 };
 
+/*********************************************************************** */
+
 const endRace = (totalCarsEndRace: number, totalCarsRacing: number) => {
-    console.log(totalCarsEndRace);    
-    if (totalCarsEndRace == totalCarsRacing && !raceWasStopped && raceEndItems[0]) {
-        getWarning(`END RACE WINNER-ID${raceEndItems[0]?.carId}`);
+    console.log(totalCarsEndRace, totalCarsRacing);    
+    if (!raceWasStopped && raceEndItems.length == 1) {
+        if (raceEndItems[0]) {
+        getWarning(`END RACE WINNER-${raceEndItems[0]?.carName}`);
         const index =raceEndItems[0]?.index
         if (index !== undefined){
         const winAnimation = winnerAnimation(index);
         winAnimation.play();
         getWinner(raceEndItems[0]);
+        }
     }}
 };

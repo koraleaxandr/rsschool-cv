@@ -60,8 +60,8 @@ export const getCarsInGarage = async (page: number, limit = '7') => {
    garageResponcedata = await response.json();
    totalCars = Number(response.headers.get('X-Total-Count'))
    totalCountString.textContent = ` (${totalCars})`;
-   //console.log(garageResponcedata); 
-   //return garageResponcedata; 
+    
+   return garageResponcedata; 
 };
 
 //----------------------------------------------------------------------

@@ -1,6 +1,6 @@
 import { RaceItemData } from "./racing";
 import {baseUrl, path} from "./apiquery";
-import { off } from "process";
+
 
 type winsData = {
      id: number,
