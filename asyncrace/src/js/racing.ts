@@ -153,7 +153,7 @@ const getDriveMode = async (raceItemData: RaceItemData) => {
     if (response.status === 200) {
         const elapsedTime = performance.now() - raceItemData.startRaceTime;
         raceItemData.elapsedRaceTime = Math.round(elapsedTime / 1000);
-        console.log(`Car ID =${raceItemData.carId} DRIVE OK`);
+       // console.log(`Car ID =${raceItemData.carId} DRIVE OK`);
         currentStopButton.click();
         raceEndItems.push(raceItemData);
         totalCarsEndRace += 1;
@@ -194,7 +194,7 @@ const getDriveMode = async (raceItemData: RaceItemData) => {
 /*********************************************************************** */
 
 const endRace = (totalCarsEndRace: number, totalCarsRacing: number) => {
-    console.log(totalCarsEndRace, totalCarsRacing); 
+   // console.log(totalCarsEndRace, totalCarsRacing); 
     localRaceStarted = false;  
     if (globalRaceStarted && raceEndItems.length == 1) {
         if (raceEndItems[0]) {

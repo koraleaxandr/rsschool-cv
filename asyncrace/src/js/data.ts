@@ -70,11 +70,9 @@ l26 0 -7 123 c-10 179 -15 207 -36 207 -10 0 -63 -48 -119 -107z"/>
 130 22 193 51 l64 29 -19 23 c-65 82 -198 227 -209 227 -7 0 -15 -4 -19 -9z"/></g>
 </svg>
 <div class="item-warning-container"></div>
-</div>
-<div class="final-lap-flag"></div>
-      </div>`;
+</div>`;
 
-export const carItemHtml = `<div class="item-race-container">
+export const carItemHtml = `
       <div class="car-item">
       <?xml version="1.0" standalone="no"?>
         <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"

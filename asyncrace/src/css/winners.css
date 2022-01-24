@@ -6,7 +6,66 @@
     font: 3vh sans-serif;
 }
 
-.winners_table_container {
+.winners_prev_page,
+.winners_next_page {
+    opacity: 0.3;
+    background-color: cadetblue;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.winner_table_start_line {
+    border: 2px solid white;
+}
+
+.winner_table_start_line {
+    margin-top: 2vh;
+}
+
+.winner_line_container,
+.winner_table_start_line {
     display: grid;
+    height: 5vh;
     grid-template-columns: 5% 10% 50% 10% 10% 15%;
+}
+
+.table-number,
+.winner_image,
+.winner_name,
+.winner_wins_number,
+.winner_best_time,
+.winner_delete,
+.winner_delete_start {
+    border: 0.1vh solid white;
+    text-align: center;
+    font-size: 2vh;
+}
+
+.winner_delete:hover {
+    background-color: rgba(255, 99, 71, 0.603);
+    cursor: pointer;
+}
+
+.winners_sort_id,
+.winners_sort_wins,
+.winners_sort_time,
+.winners_sort_ASC {
+opacity: 0.5;
+background-color: violet;
+color: white;
+}
+
+.winners_sort_ASC,
+.winners_sort_id:hover,
+.winners_sort_wins:hover,
+.winners_sort_time:hover,
+.winners_sort_ASC:hover {
+    opacity: 1;
+}
+
+.winners_sort_id:active,
+.winners_sort_wins:active,
+.winners_sort_time:active,
+.winners_sort_ASC:active {
+    background-color: slateblue;
 }
