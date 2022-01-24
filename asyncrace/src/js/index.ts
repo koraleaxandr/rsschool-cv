@@ -6,13 +6,18 @@ import "../css/winners.css";
 import { renderGarage } from './/garage';
 import { getWarning } from "./apiquery";
 import { renderWinners,  } from "./winners";
+import { stopGlobalRace } from "./racing";
 
 const toGarageButton = document.getElementById('to-garage') as HTMLElement;
 const toWinnersButton = document.getElementById('to-winners') as HTMLElement;
 
 const startFunction = () => {
     renderGarage();
-toGarageButton.addEventListener('click', renderGarage);
+toGarageButton.addEventListener('click', async() =>{
+    stopGlobalRace();
+   await renderGarage();
+    
+});
 toWinnersButton.addEventListener('click', () =>{
     getWarning('Constructing...');
     renderWinners()

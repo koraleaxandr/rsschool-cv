@@ -3,12 +3,9 @@ import { RaceItemData } from "./racing";
 // const currentCar = document.querySelector('.car-item') as HTMLElement;
 
 /******************CAR DRIVE ANIMATION******************** */
-export const carDriveAnimation = (raceItemData: RaceItemData) => {
-    const itemRaceContainers: NodeListOf < HTMLElement > = document.querySelectorAll('.item-race-container');
+export const carDriveAnimation = (raceItemData: RaceItemData) => {    
     const carItems : NodeListOf < HTMLElement > = document.querySelectorAll('.car-item');
-    const currentCar = carItems[raceItemData.index] as HTMLElement;
-    const itemRaceContainer = itemRaceContainers[raceItemData.index] as HTMLElement;
-    console.log(itemRaceContainer);
+    const currentCar = carItems[raceItemData.index] as HTMLElement;   
     const raceTime = raceItemData.data.distance / raceItemData.data.velocity;
     const animation = currentCar.animate([
   { // from
@@ -23,28 +20,33 @@ export const carDriveAnimation = (raceItemData: RaceItemData) => {
     id:raceItemData.carId,
     duration:raceTime,
    fill:"forwards",});
+   carAnimations.push(animation);
 return animation;
 };
 
 /****************GET CARS ANIMATIONS*************** */
-const carAnimations: Array <Animation> = [];
-export const getCarsAnimations = () => {
-  carAnimations.length = 0;     
-  const carItems : NodeListOf < HTMLElement > = document.querySelectorAll('.car-item');
-  
-  carItems.forEach(element => {
-     const currentCarAnimations = element.getAnimations();
+export const carAnimations: Array <Animation> = [];
+
+export const getCarsAnimations = (index: number, method: string) => {
+     
+  const carItems = document.querySelectorAll('.car-item')as NodeListOf < HTMLElement >; 
+  const currentCar = carItems[index] as HTMLElement
+  const currentCarAnimations = currentCar.getAnimations();  
      if (currentCarAnimations.length) {
-         currentCarAnimations.forEach(el=>{
-        carAnimations.push(el);
-         });
-        }     
-  });
-  return carAnimations;
+         currentCarAnimations.forEach((el)=> {
+           if (method === 'pause' ) {
+        el.pause(); 
+      } else if (method === 'cancel') {
+        el.cancel();
+      }
+      });
+    }
+  
+  return;
 };
 /****************************ENGINE BROKEN ANIMATION***** */
 export const brockenEngineAnimation = (index: number) => {
-    const carItems : NodeListOf < HTMLElement > = document.querySelectorAll('.car-item');
+    const carItems : NodeListOf < HTMLElement > = document.querySelectorAll('.item-warning-container');
     const currentCar = carItems[index] as HTMLElement;
     currentCar.textContent = 'Check Engine!';
     const animation = currentCar.animate([
@@ -59,13 +61,14 @@ export const brockenEngineAnimation = (index: number) => {
     id: `brokenEngine${index}`,
     duration:800,
    iterations: Infinity,});
+   carAnimations.push(animation);
 return animation;
 };
 
 /******************Winner ANIMATION******** */
 
 export const winnerAnimation = (index: number) => {
-    const carItems : NodeListOf < HTMLElement > = document.querySelectorAll('.car-item');
+    const carItems : NodeListOf < HTMLElement > = document.querySelectorAll('.item-warning-container');
     const currentCar = carItems[index] as HTMLElement;
     currentCar.textContent = 'WINNER!';
     const animation = currentCar.animate([
@@ -74,11 +77,25 @@ export const winnerAnimation = (index: number) => {
     backgroundColor: "transparent"
   },
   { // to
-  backgroundColor: "red"
+  backgroundColor: "green"
   }
 ], {
     id: `winner${index}`,
     duration:800,
    iterations: Infinity,});
+   carAnimations.push(animation);
 return animation;
+};
+
+/**************************CANCEL ANIMATIONS **************/
+export const cancelCarAnimations = () => {
+  carAnimations.forEach(element => {
+    element.cancel();
+  });
+  carAnimations.length = 0;
+  const carItems : NodeListOf < HTMLElement > = document.querySelectorAll('.item-warning-container');
+    carItems.forEach(element => {
+      element.textContent = '';
+    });
+    
 };
