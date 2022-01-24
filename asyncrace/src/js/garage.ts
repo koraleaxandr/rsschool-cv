@@ -40,9 +40,12 @@ export const renderGarage = async () => {
       <button type="checkbox" class="select-car" data-id="${element.id}">Select</button>
       <button class="remove-car" data-id="${element.id}">remove</button>
       </div>
+      <div class="item-race-container">
       ${carItemHtml}
       ${carItemColor}" stroke="white" stroke-width="200">
-      ${carItemImage}`;
+      ${carItemImage}
+<div class="final-lap-flag"></div>
+      </div>`;
                   carItemContainer.innerHTML = carItemContainerHTML;
                   garageContainer.append(carItemContainer);
             });

@@ -18,7 +18,7 @@ const carColorCreate = document.querySelector('.car-color-create') as HTMLInputE
 const carModelCreate = document.querySelector('.car-model-create') as HTMLInputElement;
 /*************************************************************************** */
 
-interface CarItem {
+export interface CarItem {
    id: string,
       name: string,
       color: string,
@@ -68,8 +68,8 @@ export const getCarsInGarage = async (page: number, limit = '7') => {
 export const getCarInGarageForId = async (carId: string) => {
    const response = await fetch(`${baseUrl}${path.garage}?id=${carId}`);
    const data = await response.json() as CarItem[];  
-  // console.log(data)
-   return data;
+  const currentCar = data[0];
+   return currentCar;
 };
 
 //****************************WARNING*************************** */
@@ -150,10 +150,8 @@ export const selectCar = () => {
   const selectCarButtons: NodeListOf < Element > = document.querySelectorAll('.select-car');
   selectCarButtons.forEach((element) => {
     element.addEventListener('click', async() => {
-      const carId = element.getAttribute('data-id') as string; 
-      const data = await getCarInGarageForId(carId);
-     // console.log(data[0]);
-      const currentCar = data[0] as CarItem;
+      const carId = element.getAttribute('data-id') as string;     
+      const currentCar = await getCarInGarageForId(carId) as CarItem;
       editcarModelButton.value = currentCar.name;
       editcarColorButton.value = currentCar.color;
       editCarButton.setAttribute('data-id',carId);
@@ -166,8 +164,7 @@ export const selectCar = () => {
 
 const updateCar = async() =>{
    const carId = editCarButton.getAttribute('data-id') as string;
-   const data = await getCarInGarageForId(carId);
-     const currentCar = data[0] as CarItem;   
+   const currentCar = await getCarInGarageForId(carId) as CarItem;   
      currentCar.name = editcarModelButton.value;
       currentCar.color = editcarColorButton.value;      
    const response = await fetch(`${baseUrl}${path.garage}/${carId}`, {
