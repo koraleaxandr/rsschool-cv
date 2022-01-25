@@ -1,6 +1,7 @@
 import {
    renderGarage
 } from "./garage";
+import { deleteWinner } from "./winners";
 
 export const baseUrl = 'http://127.0.0.1:3000';
 export const path = {
@@ -130,8 +131,9 @@ export const removeCar = () => {
             method: 'DELETE',
             body: carID,
          });
-         console.log(response.status);
+         deleteWinner(Number(carID));
          renderGarage();
+         return response;
       })
    });
 };

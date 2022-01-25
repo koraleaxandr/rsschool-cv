@@ -8,8 +8,9 @@ import {
   CarItem 
 } from "./apiquery";
 import { carItemHtml, carItemImage } from "./data";
+import { changeWinsPage, currentWinsPage } from "./winnerspagination";
 
-
+const totalWins = document.querySelector('.total_winners_count') as HTMLElement;
 type winsData = {
    id: number,
    wins: number,
@@ -88,10 +89,10 @@ const listenDeleteWinner = () => {
 }; 
 
 /*******************************GET WINNERS****** */
-let totalCars = 0;
+export let totalCars = 0;
 let sort = 'id';
 let order = 'ASC';
-const page = 1;
+
 
 export const getWinners = async (page: number, sort: string, order: string, limit = 10) => {
    // const queryParams = `_sort=['id'|'wins'|'time']  _order=['ASC'|'DESC']`;
@@ -111,13 +112,13 @@ export const winnersContainer = document.querySelector('.winners') as HTMLElemen
 const winnersTablecontainer = document.querySelector('.winners_table_container') as HTMLElement;
 export const bigGarageContainer = document.querySelector('.garage');
 
-
+/*********************RENDER WINNERS*************** */
 export const renderWinners = async () => {
    winnersContainer?.classList.remove('off');
    bigGarageContainer?.classList.add('off');
-   const data = await getWinners(page, sort, order, 10) as[winsData];
-   console.log(`WINNERS`)
-   console.log(data)
+   const data = await getWinners(currentWinsPage, sort, order, 10) as[winsData];
+   //console.log(`WINNERS`)
+   //console.log(data)
    let winnersContainerHtml = '';   
    let i = 0;
    for (i; i < data.length; i++) {
@@ -137,8 +138,10 @@ export const renderWinners = async () => {
       winnersContainerHtml = winnersContainerHtml + winnerLineHtml;      
    }
    winnersTablecontainer.innerHTML = winnersContainerHtml;
+   totalWins.innerHTML= ` ${totalCars}`;
    listenDeleteWinner(); 
-   activeButtons();  
+   activeButtons(); 
+   changeWinsPage(); 
 };
 
 /*******************************SORT BY************** */
