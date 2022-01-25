@@ -45,7 +45,7 @@
   height: 1.5rem;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url("../assets/svg/rs_school-js-1.svg");
+  background-image: url("./assets/svg/rs_school-js-1.svg");
   transition: .3s;
 }
 
