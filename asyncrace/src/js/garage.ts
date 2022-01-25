@@ -83,7 +83,7 @@ const nextPage = () => {
       const totalPages = (totalCars / 7);
       if (page < totalPages) {
             page += 1;
-            console.log(page);
+            //console.log(page);
             renderGarage();
             return;
       } else return;

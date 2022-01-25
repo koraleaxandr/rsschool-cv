@@ -43,9 +43,9 @@ const createRaceWinner = async (raceItemData: RaceItemData) => {
          time: bestTime,
       }),
    });
-   console.log(response);
+   //console.log(response);
    const data = await response.json();
-   console.log(data);
+  return data;
 };
 
 /***************************UPDATE WINNER*****************/

@@ -19,7 +19,7 @@ const carModelCreate = document.querySelector('.car-model-create') as HTMLInputE
 /*************************************************************************** */
 
 export interface CarItem {
-   id: string,
+   id?: string,
       name: string,
       color: string,
       status?: string,
@@ -27,14 +27,14 @@ export interface CarItem {
       time?: string,
 }
 
-class Car implements CarItem {
+export class Car implements CarItem {
    name: string;
-   id: string;
+   id?: string;
    color: string;
    status?: string;
    wins?: string;
    time?: string;
-   constructor(id: string, name: string, color: string, status: string, wins: string, time: string, ) {
+   constructor( name: string, color: string, id?: string, status?: string, wins?: string, time?: string, ) {
       this.id = id;
       this.name = name;
       this.color = color;
@@ -60,7 +60,7 @@ export const getCarsInGarage = async (page: number, limit = '7') => {
    garageResponcedata = await response.json();
    totalCars = Number(response.headers.get('X-Total-Count'))
    totalCountString.textContent = ` (${totalCars})`;
-    console.log(garageResponcedata);
+   // console.log(garageResponcedata);
    return garageResponcedata; 
 };
 
@@ -96,12 +96,10 @@ export const createCar = async () => {
       return;
    }
    const newCarColor: string = carColorCreate.value;   
-   const car = new Car('',
+   const car = new Car(
       newCarName,
       newCarColor,
-      'stopped',
-      '',
-      '');
+      );
    //console.log(JSON.stringify(car));
    carModelCreate.value = '';
    const response = await fetch(`${baseUrl}${path.garage}`, {
