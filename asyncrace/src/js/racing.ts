@@ -153,7 +153,7 @@ const getDriveMode = async (raceItemData: RaceItemData) => {
     if (response.status === 200) {
         const elapsedTime = performance.now() - raceItemData.startRaceTime;
         raceItemData.elapsedRaceTime = Math.round(elapsedTime / 1000);
-       // console.log(`Car ID =${raceItemData.carId} DRIVE OK`);
+       console.log(`Car ID =${raceItemData.carId} end Race`);
         currentStopButton.click();
         raceEndItems.push(raceItemData);
         totalCarsEndRace += 1;
@@ -204,7 +204,7 @@ const endRace = (totalCarsEndRace: number, totalCarsRacing: number) => {
         const winAnimation = winnerAnimation(index);
         winAnimation.play();
         getWinner(raceEndItems[0]);
-        console.log(raceEndItems[0]);
+       // console.log(raceEndItems[0]);
         }
     }}
     if (totalCarsEndRace === totalCarsRacing){
