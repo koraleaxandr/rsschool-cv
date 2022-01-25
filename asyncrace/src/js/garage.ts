@@ -94,7 +94,7 @@ const nextPage = () => {
 const prevPage = () => {
             if (page > 1) {
                   page = page - 1;
-                  console.log(page);
+                  //console.log(page);
                   renderGarage();
                   return;
             } else return;

@@ -28,6 +28,19 @@
     height: 5vh;
     grid-template-columns: 5% 10% 50% 10% 10% 15%;
 }
+.winnwers_pagination_container,
+.winners_total{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;    
+    text-align: center;
+    font-size: 2vh;
+}
+
+.winners_total {
+    width: 100%;
+}
 
 .table-number,
 .winner_image,
@@ -36,6 +49,9 @@
 .winner_best_time,
 .winner_delete,
 .winner_delete_start {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 0.1vh solid white;
     text-align: center;
     font-size: 2vh;
