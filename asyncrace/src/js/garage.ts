@@ -3,10 +3,11 @@ import {
       garageResponcedata,
       removeCar,
       selectCar,
-      totalCars
+      totalCars,
+      getWarning
 } from "./apiquery";
 import {
-      startRaceListening
+      startRaceListening, localRaceStarted, globalRaceStarted
 } from "./racing";
 import {
       carItemImage,
@@ -80,6 +81,9 @@ const changePage = () => {
 /******************************************************************* */
 
 const nextPage = () => {
+     if(activeRaceButtons()) {
+           return;
+      } else {
       const totalPages = (totalCars / 7);
       if (page < totalPages) {
             page += 1;
@@ -87,17 +91,30 @@ const nextPage = () => {
             renderGarage();
             return;
       } else return;
+}
 };
 
 /******************************************************************** */
 
 const prevPage = () => {
+     if(activeRaceButtons()) {
+           return;
+      } else {
             if (page > 1) {
                   page = page - 1;
                   //console.log(page);
                   renderGarage();
                   return;
             } else return;
+      }
 };
-
+/*************************ACTIVE BUTTONS****** */
+const activeRaceButtons = () => {
+    if (localRaceStarted || globalRaceStarted) {
+      getWarning(`WAIT
+      UNTIL
+      RACE END!`);
+      return true; 
+    } else return false;
+};
 /************************************************************ */      

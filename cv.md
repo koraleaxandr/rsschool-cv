@@ -18,10 +18,12 @@ My goal is an open frot-end development and make it part of my life.
 
 ## Skills
 
-* Basic knowledge of HTML, CSS, Bootstrap, JS, React JS;
+* HTML, CSS, JS, React;
 * Git/GitHub;
 * Figma;
-* VSCode
+* VSCode;
+* JS, TS;
+* NODE JS;
 
 ## Code sample
 

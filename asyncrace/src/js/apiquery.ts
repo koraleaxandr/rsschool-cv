@@ -27,7 +27,7 @@ export interface CarItem {
       wins?: string,
       time?: string,
 }
-
+//-----------------------------------------------------
 export class Car implements CarItem {
    name: string;
    id?: string;
@@ -81,10 +81,10 @@ export const getWarning = (message: string) => {
 
    setTimeout(() => {
       warningDiv.classList.add('hidden');
-   }, 3000);
+   }, 1500);
    setTimeout(() => {
       warningDiv.classList.add('off');
-   }, 4000);
+   }, 2000);
 };
 
 /*******************************************CREATE CAR**************** */
