@@ -6,6 +6,10 @@ import { getWinner } from "./winners";
 /*************************************************************** */
 const startGlobalRaceButton = document.querySelector('.start-race-button') as HTMLElement;
 const stopGlobalRaceButton = document.querySelector('.reset-garage') as HTMLElement;
+let totalCarsEndRace = 0;
+export let globalRaceStarted = false;
+const raceEndItems: RaceItemData[] = [];
+export let localRaceStarted = false;
 
 
 export type RaceItemData = {
@@ -18,9 +22,7 @@ export type RaceItemData = {
     index: number,
     startRaceTime: number;
     elapsedRaceTime: number;
-}
-const raceEndItems: RaceItemData[] = [];
-
+};
 /**************************GET ENGINE******************************** */
 const getEngine = async (carName: string, carId: string, status: string, index: number) => {    
     const response = await fetch(`${baseUrl}${path.engine}?id=${carId}&status=${status}`, {
@@ -44,14 +46,13 @@ const getEngine = async (carName: string, carId: string, status: string, index: 
         getWarning(`car with such ID =${carId} Drive already in progress. You can't run drive for the same car twice while it's not stopped.`);        
         return;
     } else if (response.status === 200 && status === 'stopped') {
-        getCarsAnimations(index, 'pause');      
+        const status = localRaceStarted ? 'cancel': 'pause';
+        getCarsAnimations(index, status);      
         return;
     } else return;
 };
 
 /************************START RACE LISTENING********************* */
-let localRaceStarted = false;
-
 export const startRaceListening = () => {
     const startButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.start-car');
     const stopButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.stop-car');
@@ -95,9 +96,6 @@ export const startRaceListening = () => {
 };
 
 /*********************************START RACE************** */
-let totalCarsEndRace = 0;
-let globalRaceStarted = false;
-
 const startGlobalRace = async() => {
     startGlobalRaceButton.style.opacity ='0.3';
     if(!globalRaceStarted) {
@@ -113,7 +111,7 @@ const startGlobalRace = async() => {
     });
 }
 };
-
+//--------------------------------------------------------
 startGlobalRaceButton.addEventListener('click', () =>{
     if (globalRaceStarted) {
         getWarning('Please WAIT until END RACE!');
@@ -123,7 +121,6 @@ startGlobalRaceButton.addEventListener('click', () =>{
 });
 
 /***********************STOP RACE***************** */
-
 export const stopGlobalRace = async() => {
     globalRaceStarted = false;
     const stopButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.stop-car');
@@ -134,12 +131,10 @@ export const stopGlobalRace = async() => {
         await renderGarage();
     
 };
-
+//-------------------------------------------------------------
 stopGlobalRaceButton.addEventListener('click', stopGlobalRace);
 
-/*******************************DRIVE**************** */
-
-
+/*******************************DRIVE*******************/
 const getDriveMode = async (raceItemData: RaceItemData) => {
     const currentCarAnimation = carDriveAnimation(raceItemData);
     currentCarAnimation.play();    
@@ -192,7 +187,6 @@ const getDriveMode = async (raceItemData: RaceItemData) => {
 };
 
 /*********************************************************************** */
-
 const endRace = (totalCarsEndRace: number, totalCarsRacing: number) => {
    // console.log(totalCarsEndRace, totalCarsRacing); 
     localRaceStarted = false;  
@@ -212,3 +206,4 @@ const endRace = (totalCarsEndRace: number, totalCarsRacing: number) => {
         globalRaceStarted = false;
     }
 };
+
