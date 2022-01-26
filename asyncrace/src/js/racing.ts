@@ -81,8 +81,7 @@ export const startRaceListening = () => {
         })
     });
     stopButtons.forEach((element) => {
-        element.addEventListener('click', async () => {
-           
+        element.addEventListener('click', async () => {           
             const carId = element.getAttribute('data-id') as string;
             const carName = element.getAttribute('data-name') as string;
             const index = Array.prototype.indexOf.call(stopButtons, element);
@@ -149,8 +148,10 @@ const getDriveMode = async (raceItemData: RaceItemData) => {
         const elapsedTime = performance.now() - raceItemData.startRaceTime;
         raceItemData.elapsedRaceTime = Math.round(elapsedTime / 1000);
        console.log(`Car ID =${raceItemData.carId} end Race`);
+       if (currentStopButton.style.opacity === '1') {
         currentStopButton.click();
         raceEndItems.push(raceItemData);
+       }
         totalCarsEndRace += 1;
         endRace(totalCarsEndRace, totalCarsRacing);
         return;
