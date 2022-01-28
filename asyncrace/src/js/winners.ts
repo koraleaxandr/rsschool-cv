@@ -10,7 +10,7 @@ import {
 import { carItemHtml, carItemImage } from "./data";
 import { changeWinsPage, currentWinsPage } from "./winnerspagination";
 
-const totalWins = document.querySelector('.total_winners_count') as HTMLElement;
+
 type winsData = {
    id: number,
    wins: number,
@@ -18,10 +18,11 @@ type winsData = {
 }
 
 /*****************GET WINNER****************************** */
-export const getWinner = async (raceItemData: RaceItemData) => {
+export const getWinner = async (raceItemData: RaceItemData): Promise<void> => {
    const response = await fetch(`${baseUrl}${path.winners}/${raceItemData.carId}`, {
       method: 'GET',
    });
+   console.log(response);
    if (response.ok) {
       const data = await response.json();
       updateRaceWinner(raceItemData, data);
@@ -30,7 +31,7 @@ export const getWinner = async (raceItemData: RaceItemData) => {
 };
 
 /******************CREATE WINNER*********************** */
-const createRaceWinner = async (raceItemData: RaceItemData) => {
+const createRaceWinner = async (raceItemData: RaceItemData): Promise<void> => {
    const wins = 1;
    const bestTime = raceItemData.elapsedRaceTime;
    const response = await fetch(`${baseUrl}${path.winners}`, {
@@ -50,7 +51,7 @@ const createRaceWinner = async (raceItemData: RaceItemData) => {
 };
 
 /***************************UPDATE WINNER*****************/
-const updateRaceWinner = async (raceItemData: RaceItemData, data: winsData) => {
+const updateRaceWinner = async (raceItemData: RaceItemData, data: winsData): Promise<Response> => {
    const wins = data.wins + 1;
    const bestTime = raceItemData.elapsedRaceTime <= data.time ? raceItemData.elapsedRaceTime : data.time;
    const dataParams = `/${raceItemData.carId}`;
@@ -64,11 +65,11 @@ const updateRaceWinner = async (raceItemData: RaceItemData, data: winsData) => {
          time: bestTime,
       }),
    });
-   console.log(response);
+  return response;
 };
 
 /*************************DELETE WINNER/************** */
-export const deleteWinner = async (id: number) => {
+export const deleteWinner = async (id: number): Promise<Response> => {
    const response = await fetch(`${baseUrl}${path.winners}/${id}`, {
       method: 'DELETE',
    });
@@ -76,11 +77,11 @@ export const deleteWinner = async (id: number) => {
    return data;
 };
 
-const listenDeleteWinner = () => {
+const listenDeleteWinner = () => {   
    const deleteWinnerButtons = document.querySelectorAll('.winner_delete');
    deleteWinnerButtons.forEach((el) => {
       el.addEventListener('click' , async() => {
-         console.log('del');
+        // console.log('del');
       const carId = Number(el.getAttribute('data-id'));
       await deleteWinner(carId);
       await  renderWinners();
@@ -94,7 +95,7 @@ let sort = 'id';
 let order = 'ASC';
 
 
-export const getWinners = async (page: number, sort: string, order: string, limit = 10) => {
+export const getWinners = async (page: number, sort: string, order: string, limit = 10): Promise<void | [winsData]> => {
    // const queryParams = `_sort=['id'|'wins'|'time']  _order=['ASC'|'DESC']`;
    const response = await fetch(`${baseUrl}${path.winners}?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`, {
       method: 'GET',
@@ -102,18 +103,19 @@ export const getWinners = async (page: number, sort: string, order: string, limi
    if (response.ok) {
       const data: [winsData] = await response.json();
       totalCars = Number(response.headers.get('X-Total-Count'));
-      console.log(totalCars);
+    //  console.log(totalCars);
       return data;
    } else return;
 };
 
 /******************************RENDER WINNER CONTAINER***** */
-export const winnersContainer = document.querySelector('.winners') as HTMLElement;
-const winnersTablecontainer = document.querySelector('.winners_table_container') as HTMLElement;
-export const bigGarageContainer = document.querySelector('.garage');
 
 /*********************RENDER WINNERS*************** */
-export const renderWinners = async () => {
+export const renderWinners = async (): Promise<void> => {
+   const winnersContainer = document.querySelector('.winners') as HTMLElement;
+   const winnersTablecontainer = document.querySelector('.winners_table_container') as HTMLElement;
+   const bigGarageContainer = document.querySelector('.garage') as HTMLElement;
+   const totalWins = document.querySelector('.total_winners_count') as HTMLElement;
    winnersContainer?.classList.remove('off');
    bigGarageContainer?.classList.add('off');
    const data = await getWinners(currentWinsPage, sort, order, 10) as[winsData];
@@ -141,17 +143,18 @@ export const renderWinners = async () => {
    totalWins.innerHTML= ` ${totalCars}`;
    listenDeleteWinner(); 
    activeButtons(); 
-   changeWinsPage(); 
+   changeWinsPage();  
 };
 
 /*******************************SORT BY************** */
 
+
+
+export const sortWinners = (): void =>{
 const sortById = document.querySelector('.winners_sort_id') as HTMLElement;
 const sortByWins = document.querySelector('.winners_sort_wins') as HTMLElement;
 const sortByTime = document.querySelector('.winners_sort_time') as HTMLElement;
 const sortByAsc = document.querySelector('.winners_sort_ASC') as HTMLElement;
-
-const sortWinners = () =>{
    sortById.addEventListener('click', ()=>{
       sort = 'id';
       renderWinners();
@@ -171,9 +174,12 @@ const sortWinners = () =>{
    }); 
 };
 
-sortWinners();
+//
 /******************************************************************* */
-const activeButtons =() =>{
+const activeButtons =(): void =>{
+const sortById = document.querySelector('.winners_sort_id') as HTMLElement;
+const sortByWins = document.querySelector('.winners_sort_wins') as HTMLElement;
+const sortByTime = document.querySelector('.winners_sort_time') as HTMLElement;
    switch (sort) {
     case 'id':
        sortById.style.opacity = '1';

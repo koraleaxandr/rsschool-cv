@@ -1,8 +1,5 @@
 import { renderWinners, totalCars } from "./winners";
 
-const nextWinnerPageButton = document.querySelector('.winners_next_page') as HTMLElement;
-const prevWinnerPageButton = document.querySelector('.winners_prev_page') as HTMLElement;
-const currentWinsPageNumber = document.querySelector('.page_winners_count') as HTMLElement;
 
 
 
@@ -12,7 +9,11 @@ export let currentWinsPage = 1;
 /**************************CHANGE WINS PAGE*************** */
 
 
-export const changeWinsPage = () => {
+export const changeWinsPage = (): void => {
+      const nextWinnerPageButton = document.querySelector('.winners_next_page') as HTMLElement;
+const prevWinnerPageButton = document.querySelector('.winners_prev_page') as HTMLElement;
+const currentWinsPageNumber = document.querySelector('.page_winners_count') as HTMLElement;
+
       prevWinnerPageButton.style.opacity = "0.3";
       nextWinnerPageButton.style.opacity = '0.3';
       const totalPages = (totalCars / 10);
@@ -31,7 +32,7 @@ export const changeWinsPage = () => {
 
 /***************************************************************** */
 
-const nextWinsPage = () => {
+const nextWinsPage = (): void => {
       const totalPages = (totalCars / 10);
       if (currentWinsPage < totalPages) {
             currentWinsPage += 1;
@@ -43,7 +44,7 @@ const nextWinsPage = () => {
 
 /****************************************************************** */
 
-const prevWinsPage = () => {
+const prevWinsPage = (): void => {
             if (currentWinsPage > 1) {
                   currentWinsPage = currentWinsPage - 1;
                   //console.log(currentWinsPage);

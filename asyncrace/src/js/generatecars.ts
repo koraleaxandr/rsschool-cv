@@ -1,20 +1,22 @@
-import { getWarning, Car, path, baseUrl } from "./apiquery";
+import { getWarning, Car, path, CarItem,  baseUrl } from "./apiquery";
 import { modelsCars, brandsCars } from "./carsmodels";
-import { renderGarage } from "./garage";
+import { renderGarage} from "./garage";
 
-const generateCarsButton = document.querySelector('.generate-cars') as HTMLElement;
 
-export const generateCars = () => {
+
+export const generateCars = (): void => {
+  const generateCarsButton = document.querySelector('.generate-cars') as HTMLElement;
     generateCarsButton.addEventListener('click', async()=> {
         getWarning('Please wait a sec');
         const promiseSet = generateCarsSetPromise(100);
         const response = await Promise.allSettled(promiseSet);
-        renderGarage();
-        return response;
+        if (response) {
+        renderGarage();        
+        } else getWarning('Problems with server');
     })
 };
 
-const getRandomIntInclusive = (min: number, max: number) => {
+const getRandomIntInclusive = (min: number, max: number): number => {
    min = Math.ceil(min);
    max = Math.floor(max);
    return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
@@ -26,15 +28,14 @@ const getRandomIntInclusive = (min: number, max: number) => {
 //    setTimeout(getRandomNum, 160000);
 // }
 
-const getRandomCarName = () => {
+const getRandomCarName = (): string => {
     const carModel= modelsCars[getRandomIntInclusive(0, modelsCars.length - 1)] as string;
     const carBrand = brandsCars[getRandomIntInclusive(0, brandsCars.length - 1)] as string;
     const carName = `${carBrand} ${carModel}`;
     return carName;
 };
 
-const getRandomColor = () => {
-    
+const getRandomColor = (): string => {    
   const letters = '0123456789ABCDEF';
   let color = '#';
   for (let i = 0; i < 6; i++) {
@@ -43,7 +44,7 @@ const getRandomColor = () => {
   return color;
 };
 /************************************************************ */
-const createRandomCar = () => {
+const createRandomCar = (): CarItem => {
     const newCarName = getRandomCarName();
    const newCarColor = getRandomColor();   
    const car = new Car(
@@ -54,8 +55,8 @@ const createRandomCar = () => {
    return car;
 };
 /******************************************************* */
-const generateCarsSetPromise = (quantity = 100) => {
-    const carsSetPromise: Array<Promise<Response>> = [];
+const generateCarsSetPromise = (quantity = 100): Array<Promise<Response>> => {
+    const carsSetPromise = [];
     for (let i = 0; i < quantity; i++) {
         const car = createRandomCar();
         const response =  fetch(`${baseUrl}${path.garage}`, {

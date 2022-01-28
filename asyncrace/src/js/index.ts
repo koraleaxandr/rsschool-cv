@@ -4,27 +4,35 @@ import "../css/garage.css";
 import "../css/winners.css";
 
 import { renderGarage } from './/garage';
-//import { getWarning } from "./apiquery";
-import { renderWinners,  } from "./winners";
+import { listenApiQuery } from "./apiquery";
+import { renderWinners,  sortWinners  } from "./winners";
 import { stopGlobalRace } from "./racing";
 import { generateCars } from "./generatecars";
+import { bodyHtml } from "./data";
+
+
+
+const startFunction = async():Promise<void> => {
+    await renderBody();
+    renderGarage();
+    generateCars();
 
 const toGarageButton = document.getElementById('to-garage') as HTMLElement;
 const toWinnersButton = document.getElementById('to-winners') as HTMLElement;
 
-const startFunction = () => {
-    renderGarage();
-    generateCars();
 toGarageButton.addEventListener('click', async() =>{
-    stopGlobalRace();
-   await renderGarage();
-    
+    stopGlobalRace();     
 });
-toWinnersButton.addEventListener('click', () =>{
-   // getWarning('Constructing...');
-    renderWinners();
-})
-}
 
+toWinnersButton.addEventListener('click', (): void =>{ 
+    renderWinners();
+     sortWinners(); 
+})
+};
+
+const renderBody = async(): Promise<void> =>{
+document.body.innerHTML = bodyHtml;
+listenApiQuery();
+};
 
 startFunction();

@@ -13,10 +13,9 @@ export let garageResponcedata: CarItem[] = [];
 export let totalCars: number;
 
 /************************************************************************** */
-const warningDiv = document.getElementById('warning-message') as HTMLElement;
-const totalCountString = document.querySelector('.total-count') as HTMLElement;
-const carColorCreate = document.querySelector('.car-color-create') as HTMLInputElement;
-const carModelCreate = document.querySelector('.car-model-create') as HTMLInputElement;
+
+
+
 /*************************************************************************** */
 
 export interface CarItem {
@@ -56,25 +55,29 @@ if (index) {
 };
 
 /**************************************GETCARS**************************************** */
-export const getCarsInGarage = async (page: number, limit = '7') => {
+export const getCarsInGarage = async (page: number, limit = '7'): Promise<CarItem[]> => {
    const response = await fetch(`${baseUrl}${path.garage}?_page=${page}&_limit=${limit}`);
    garageResponcedata = await response.json();
-   totalCars = Number(response.headers.get('X-Total-Count'))
+   totalCars = Number(response.headers.get('X-Total-Count'));
+   const totalCountString = document.querySelector('.total-count') as HTMLElement;
    totalCountString.textContent = ` (${totalCars})`;
    // console.log(garageResponcedata);
    return garageResponcedata; 
 };
 
 //----------------------------------------------------------------------
-export const getCarInGarageForId = async (carId: string) => {
+export const getCarInGarageForId = async (carId: string): Promise<CarItem | void> => {
    const response = await fetch(`${baseUrl}${path.garage}?id=${carId}`);
-   const data = await response.json() as CarItem[];  
-  const currentCar = data[0];
-   return currentCar;
+   const data = await response.json()as CarItem[]; 
+   if (response.status == 200) { 
+  const currentCar =  data[0] as CarItem;
+  return currentCar;
+   } else getWarning('No car with such ID in garage');   
 };
 
 //****************************WARNING*************************** */
-export const getWarning = (message: string) => {
+export const getWarning = (message: string): void => {
+   const warningDiv = document.getElementById('warning-message') as HTMLElement;
    warningDiv.textContent = message;
    warningDiv.classList.remove('off');
    warningDiv.classList.remove('hidden');
@@ -88,9 +91,11 @@ export const getWarning = (message: string) => {
 };
 
 /*******************************************CREATE CAR**************** */
-const createCarButton = document.querySelector('.create-car') as HTMLElement;
+
 //-------------------------------------------------
-export const createCar = async () => {
+export const createCar = async ():Promise<void | CarItem>=> {
+const carColorCreate = document.querySelector('.car-color-create') as HTMLInputElement;
+const carModelCreate = document.querySelector('.car-model-create') as HTMLInputElement;
    const newCarName: string = carModelCreate.value;
    if (!newCarName) {
       getWarning('Input Car Model!');
@@ -101,8 +106,8 @@ export const createCar = async () => {
       newCarName,
       newCarColor,
       );
-   //console.log(JSON.stringify(car));
-   carModelCreate.value = '';
+   console.log(JSON.stringify(car));
+   //carModelCreate.value = '';
    const response = await fetch(`${baseUrl}${path.garage}`, {
       method: 'POST',
       headers: {
@@ -110,19 +115,19 @@ export const createCar = async () => {
       },
       body: JSON.stringify(car),
    });
-   console.log(response.status);
+   console.log(response);
+   if (response.status == 201){
    const newcar = await response.json();
    renderGarage();
    return newcar;
+   } else getWarning('Problems with server');
 };
 //-------------------------------------------------------------
-createCarButton.addEventListener('click', () => {
-   createCar();
-});
+
 
 /*************************************************************************** */
 
-export const removeCar = () => {
+export const removeCar = (): void => {
    const removeCarButtons: NodeListOf < Element > = document.querySelectorAll('.remove-car');
    removeCarButtons.forEach((element): void => {
       element.addEventListener('click', async () => {
@@ -131,22 +136,25 @@ export const removeCar = () => {
             method: 'DELETE',
             body: carID,
          });
+         if (response.status == 200) {
          deleteWinner(Number(carID));
          renderGarage();
-         return response;
+         return ;
+         } else getWarning('No car with such ID in garage');
       })
    });
 };
 
 //-------------------------------------------------------------
-const editCarButton = document.querySelector('.update-car') as HTMLElement;
-const editcarModelButton = document.querySelector('.car-model-edit') as HTMLInputElement;
-const editcarColorButton = document.querySelector('.car-color-edit') as HTMLInputElement;
-const updateCarContainer = document.querySelector('.update-car-container') as HTMLElement;
+
 
 //---------------------------SELECT CAR----------------------------
 
-export const selectCar = () => {
+export const selectCar = (): void => {
+   const editCarButton = document.querySelector('.update-car') as HTMLElement;
+const editcarModelButton = document.querySelector('.car-model-edit') as HTMLInputElement;
+const editcarColorButton = document.querySelector('.car-color-edit') as HTMLInputElement;
+const updateCarContainer = document.querySelector('.update-car-container') as HTMLElement;
   const selectCarButtons: NodeListOf < Element > = document.querySelectorAll('.select-car');
   selectCarButtons.forEach((element) => {
     element.addEventListener('click', async() => {
@@ -162,7 +170,11 @@ export const selectCar = () => {
 
 /******************************UPDATE CAR************************** */
 
-const updateCar = async() =>{
+const updateCar = async(): Promise<void> =>{
+   const updateCarContainer = document.querySelector('.update-car-container') as HTMLElement;
+   const editCarButton = document.querySelector('.update-car') as HTMLElement;
+const editcarModelButton = document.querySelector('.car-model-edit') as HTMLInputElement;
+const editcarColorButton = document.querySelector('.car-color-edit') as HTMLInputElement;
    const carId = editCarButton.getAttribute('data-id') as string;
    const currentCar = await getCarInGarageForId(carId) as CarItem;   
      currentCar.name = editcarModelButton.value;
@@ -174,11 +186,25 @@ const updateCar = async() =>{
       },
             body: JSON.stringify(currentCar),
          });
+         if (response.status == 200){
          editcarModelButton.value = '';
          updateCarContainer.style.opacity = '0.3';
          renderGarage();
-         return response;
+         return;
+         } else getWarning('Problems with server');
 };
+
+
+
+/*********************************************************************** */
+export const listenApiQuery = () => {
+const createCarButton = document.querySelector('.create-car') as HTMLElement;
+const editCarButton = document.querySelector('.update-car') as HTMLElement;
+const editcarModelButton = document.querySelector('.car-model-edit') as HTMLInputElement;
+
+createCarButton.addEventListener('click', () => {
+   createCar();
+});
 
 editCarButton.addEventListener('click', () =>{
    if (editcarModelButton.value) {
@@ -188,4 +214,4 @@ editCarButton.addEventListener('click', () =>{
    }
 });
 
-/*********************************************************************** */
+};

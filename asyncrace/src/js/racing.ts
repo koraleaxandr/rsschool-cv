@@ -4,8 +4,6 @@ import { renderGarage } from "./garage";
 import { getWinner } from "./winners";
 
 /*************************************************************** */
-const startGlobalRaceButton = document.querySelector('.start-race-button') as HTMLElement;
-const stopGlobalRaceButton = document.querySelector('.reset-garage') as HTMLElement;
 let totalCarsEndRace = 0;
 export let globalRaceStarted = false;
 const raceEndItems: RaceItemData[] = [];
@@ -25,7 +23,7 @@ export type RaceItemData = {
     elapsedRaceTime: number;
 };
 /**************************GET ENGINE******************************** */
-const getEngine = async (carName: string, carId: string, status: string, index: number) => {    
+const getEngine = async (carName: string, carId: string, status: string, index: number): Promise<void | RaceItemData> => {    
     const response = await fetch(`${baseUrl}${path.engine}?id=${carId}&status=${status}`, {
         method: 'PATCH'
     });
@@ -54,7 +52,18 @@ const getEngine = async (carName: string, carId: string, status: string, index: 
 };
 
 /************************START RACE LISTENING********************* */
-export const startRaceListening = () => {
+export const startRaceListening = (): void => {
+    const startGlobalRaceButton = document.querySelector('.start-race-button') as HTMLElement;
+    const stopGlobalRaceButton = document.querySelector('.reset-garage') as HTMLElement;
+    stopGlobalRaceButton.addEventListener('click', stopGlobalRace);
+    startGlobalRaceButton.addEventListener('click', () =>{
+    if (globalRaceStarted) {
+       // getWarning('Please WAIT until END RACE!');
+        return;
+    }
+    startGlobalRace();
+});
+
     const startButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.start-car');
     const stopButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.stop-car');
     startButtons.forEach((element) => {
@@ -62,13 +71,13 @@ export const startRaceListening = () => {
             if (!globalRaceStarted && !localRaceStarted) {
                 cancelCarAnimations(); 
                  localRaceStarted = true;              
-             }
-    //else if (localRaceStarted) {
-    //  getWarning(`Drive already in progress.
-    //   You can't run drive for the same car twice while it's not stopped.`); 
-    //  return;   
-    // }
-    if (element.style.opacity !== '0.3'){
+            }else if (localRaceStarted) {
+     getWarning(`Drive already in progress.
+      You can't run drive for the same car twice while it's not stopped.`); 
+     return;   
+    }
+    if (element.style.opacity !== '0.3' ){
+
             const carId = element.getAttribute('data-id') as string;
             const carName = element.getAttribute('data-name') as string;
             element.style.opacity = '0.3';
@@ -97,7 +106,8 @@ export const startRaceListening = () => {
 };
 
 /*********************************START RACE************** */
-const startGlobalRace = async() => {    
+const startGlobalRace = async(): Promise<void> => {
+    const startGlobalRaceButton = document.querySelector('.start-race-button') as HTMLElement;
     startGlobalRaceButton.style.opacity ='0.3';
     if(!globalRaceStarted) {
     globalRaceStarted = true;
@@ -111,19 +121,11 @@ const startGlobalRace = async() => {
     startButtons.forEach(async (element) => {
         element.click();
     });
-}
+} else return;
 };
-//--------------------------------------------------------
-startGlobalRaceButton.addEventListener('click', () =>{
-    if (globalRaceStarted) {
-        getWarning('Please WAIT until END RACE!');
-        return;
-    }
-    startGlobalRace();
-});
 
 /***********************STOP RACE***************** */
-export const stopGlobalRace = async() => {
+export const stopGlobalRace = async():Promise<void> => {
     globalRaceStarted = false;
     const stopButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.stop-car');
     stopButtons.forEach(async (element) => {
@@ -133,11 +135,9 @@ export const stopGlobalRace = async() => {
         await renderGarage();
     
 };
-//-------------------------------------------------------------
-stopGlobalRaceButton.addEventListener('click', stopGlobalRace);
 
 /*******************************DRIVE*******************/
-const getDriveMode = async (raceItemData: RaceItemData) => {
+const getDriveMode = async (raceItemData: RaceItemData): Promise<void> => {
     const currentCarAnimation = carDriveAnimation(raceItemData);
     currentCarAnimation.play(); 
     totalCarsRacing += 1; 
@@ -154,7 +154,7 @@ const getDriveMode = async (raceItemData: RaceItemData) => {
         raceItemData.elapsedRaceTime = Math.round(elapsedTime / 1000);
        console.log(`Car ID =${raceItemData.carId} end Race`);
        if (currentStopButton.style.opacity === '1') {
-        currentStopButton.click();
+        // currentStopButton.click();
         raceEndItems.push(raceItemData);
        }
         totalCarsEndRace += 1;
@@ -193,8 +193,8 @@ const getDriveMode = async (raceItemData: RaceItemData) => {
 };
 
 /*********************************************************************** */
-const endRace = (totalCarsEndRace: number, totalCarsRacing: number) => {
-   // console.log(totalCarsEndRace, totalCarsRacing); 
+const endRace = (totalCarsEndRace: number, totalCarsRacing: number): void => {
+   const startGlobalRaceButton = document.querySelector('.start-race-button') as HTMLElement;
     localRaceStarted = false;  
     if (globalRaceStarted && raceEndItems.length == 1) {
         if (raceEndItems[0]) {
@@ -209,6 +209,10 @@ const endRace = (totalCarsEndRace: number, totalCarsRacing: number) => {
     }}
     if (totalCarsEndRace >= totalCarsRacing){
         startGlobalRaceButton.style.opacity = '1';
+        const stopButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.stop-car');
+    stopButtons.forEach(async (element) => {
+        element.click();        
+        });
         globalRaceStarted = false;
         totalCarsRacing = 0;
     }
