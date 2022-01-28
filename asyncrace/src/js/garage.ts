@@ -4,27 +4,27 @@ import {
       removeCar,
       selectCar,
       totalCars,
-      getWarning
+      getWarning,
 } from "./apiquery";
 import {
-      startRaceListening, localRaceStarted, globalRaceStarted
+      startRaceListening,
+      localRaceStarted,
+      globalRaceStarted
 } from "./racing";
 import {
       carItemImage,
-      carItemHtml
+      carItemHtml,
 } from "./data";
-import { winnersContainer, bigGarageContainer} from "./winners";
 
 
-export const garageContainer = document.querySelector('.garage-container') as HTMLElement;
+//export const garageContainer = document.querySelector('.garage-container') as HTMLElement;
 let page = 1;
-const currentPageNumber = document.querySelector('.page-count') as HTMLElement;
-const nextPageButton = document.querySelector('.next-page-button') as HTMLElement;
-const prevPageButton = document.querySelector('.prev-page-button') as HTMLElement;
-
 
 /**************************************************************** */
-export const renderGarage = async () => {      
+export const renderGarage = async (): Promise < void > => {
+      const garageContainer = document.querySelector('.garage-container') as HTMLElement;
+      const winnersContainer = document.querySelector('.winners') as HTMLElement;
+      const bigGarageContainer = document.querySelector('.garage') as HTMLElement;
       await getCarsInGarage(page);
       winnersContainer?.classList.add('off');
       bigGarageContainer?.classList.remove('off');
@@ -59,9 +59,10 @@ export const renderGarage = async () => {
 };
 
 /**************************CHANGE PAGE*************** */
-
-
-const changePage = () => {
+const changePage = (): void => {
+      const nextPageButton = document.querySelector('.next-page-button') as HTMLElement;
+      const prevPageButton = document.querySelector('.prev-page-button') as HTMLElement;
+      const currentPageNumber = document.querySelector('.page-count') as HTMLElement;
       prevPageButton.style.opacity = "0.3";
       nextPageButton.style.opacity = '0.3';
       const totalPages = (totalCars / 7);
@@ -80,25 +81,25 @@ const changePage = () => {
 
 /******************************************************************* */
 
-const nextPage = () => {
-     if(activeRaceButtons()) {
-           return;
-      } else {
-      const totalPages = (totalCars / 7);
-      if (page < totalPages) {
-            page += 1;
-            //console.log(page);
-            renderGarage();
+const nextPage = (): void => {
+      if (activeRaceButtons()) {
             return;
-      } else return;
-}
+      } else {
+            const totalPages = (totalCars / 7);
+            if (page < totalPages) {
+                  page += 1;
+                  //console.log(page);
+                  renderGarage();
+                  return;
+            } else return;
+      }
 };
 
 /******************************************************************** */
 
-const prevPage = () => {
-     if(activeRaceButtons()) {
-           return;
+const prevPage = (): void => {
+      if (activeRaceButtons()) {
+            return;
       } else {
             if (page > 1) {
                   page = page - 1;
@@ -109,12 +110,12 @@ const prevPage = () => {
       }
 };
 /*************************ACTIVE BUTTONS****** */
-const activeRaceButtons = () => {
-    if (localRaceStarted || globalRaceStarted) {
-      getWarning(`WAIT
+const activeRaceButtons = (): boolean => {
+      if (localRaceStarted || globalRaceStarted) {
+            getWarning(`WAIT
       UNTIL
       RACE END!`);
-      return true; 
-    } else return false;
+            return true;
+      } else return false;
 };
-/************************************************************ */      
+/************************************************************ */

@@ -81,4 +81,79 @@ export const carItemHtml = `
          width="1280.000000pt" height="640.000000pt" viewBox="0 0 1280.000000 640.000000"
          preserveAspectRatio="xMidYMid meet">
         <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-        fill="`      
+        fill="`;    
+
+        export const bodyHtml = `
+        <header>
+  <div class="select-page-container">
+    <button class="page-select" id="to-garage">TO GARAGE</button>
+    <button class="page-select" id="to-winners">TO WINNERS</button>
+  </div>
+</header>
+  <div class="warning off hidden" id="warning-message"></div>
+        <div class="garage">
+    <div class="create-car-container">
+      <input type="text" class="car-model-create">
+      <input type="color" class="car-color-create">
+      <button class="create-car">CREATE</button>
+    </div>
+    <div class="update-car-container">
+      <input type="search" class="car-model-edit">
+      <input type="color" class="car-color-edit">
+      <button class="update-car">UPDATE</button>
+    </div>
+    <div class="race-container">
+      <div class="garage-total">
+        <p>GARAGE<span class="total-count"></span></p>
+        <p>Page<span class="page-count">#1</span></p>
+      </div>
+      <button class="next-page-button">NEXT PAGE</button>
+      <button class="prev-page-button">PREV PAGE</button>
+      <button class="start-race-button">START RACE</button>
+      <button class="reset-garage">RESET</button>
+      <button class="generate-cars">Generate cars</button>
+    </div>
+    <div class="garage-container">      
+    </div>
+  </div>
+  <div class="winners off">
+    <div class="winnwers_pagination_container">
+      <div class="winners_total">
+        <div class="">
+        <p>WINNERS<span class="total_winners_count"></span></p>
+        <p>Page<span class="page_winners_count">#1</span></p>
+        </div>
+        <button class="winners_prev_page">PREV</button>
+      <button class="winners_next_page">NEXT</button>
+      </div>
+      
+      <p>SORT BY:</p> 
+      <button type="menu" class="winners_sort_id">ID</button>
+      <button type="menu" class="winners_sort_wins">wins</button>
+      <button type="menu" class="winners_sort_time">best time</button>
+      <button type class="winners_sort_ASC">ASC</button>
+    </div>
+    <div class="winner_table_start_line">
+     
+   <div class="table-number">№</div>
+      <div class="winner_image">Car image</div>
+      <div class="winner_name">Model</div>
+      <div class="winner_wins_number">WINS</div>
+      <div class="winner_best_time">Best time</div>
+      <div class="winner_delete_start">DELETE</div>
+      </div>     
+    <div class="winners_table_container"></div>
+  </div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-data">
+          <p class="copyright">©</p>
+          <p class="year">2021</p>
+          <a class="github-username" href="https://github.com/koraleaxandr/" target="_blank"
+            rel="noopener noreferrer">Alexandr Karatkevich</a>
+        </div>
+
+        <a class="rss-logo" href="https://rs.school/js/" target="_blank" rel="noopener noreferrer"></a>
+      </div>
+    </footer>`;
