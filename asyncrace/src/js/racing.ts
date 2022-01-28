@@ -8,6 +8,7 @@ let totalCarsEndRace = 0;
 export let globalRaceStarted = false;
 const raceEndItems: RaceItemData[] = [];
 export let localRaceStarted = false;
+let totalCarsRacing = 0;
 
 
 export type RaceItemData = {
@@ -76,13 +77,14 @@ export const startRaceListening = (): void => {
      return;   
     }
     if (element.style.opacity !== '0.3' ){
+
             const carId = element.getAttribute('data-id') as string;
             const carName = element.getAttribute('data-name') as string;
             element.style.opacity = '0.3';
             const index = Array.prototype.indexOf.call(startButtons, element);
             const currentStopButton = stopButtons[index] as HTMLElement;
             currentStopButton.style.opacity = '1';
-            // console.log(index);
+            getCarsAnimations(index, 'cancel');
             await getEngine(carName, carId, 'started', index); 
     } else {getWarning(`Drive already in progress.
       You can't run drive for the same car twice while it's not stopped.`); 
@@ -112,6 +114,7 @@ const startGlobalRace = async(): Promise<void> => {
     localRaceStarted = false;
     raceEndItems.length = 0;
     totalCarsEndRace = 0;
+    totalCarsRacing = 0;
     cancelCarAnimations();
     await renderGarage();        
     const startButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.start-car');
@@ -120,8 +123,6 @@ const startGlobalRace = async(): Promise<void> => {
     });
 } else return;
 };
-//--------------------------------------------------------
-
 
 /***********************STOP RACE***************** */
 export const stopGlobalRace = async():Promise<void> => {
@@ -134,19 +135,20 @@ export const stopGlobalRace = async():Promise<void> => {
         await renderGarage();
     
 };
-//-------------------------------------------------------------
 
 /*******************************DRIVE*******************/
 const getDriveMode = async (raceItemData: RaceItemData): Promise<void> => {
     const currentCarAnimation = carDriveAnimation(raceItemData);
-    currentCarAnimation.play();    
+    currentCarAnimation.play(); 
+    totalCarsRacing += 1; 
+    globalRaceStarted =  totalCarsRacing > 1? true : false;
+    console.log(totalCarsRacing);   
     const response = await fetch(`${baseUrl}${path.engine}?id=${raceItemData.carId}&status=drive`, {
         method: 'PATCH'
     });
     const stopButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.stop-car');
-    const startButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.start-car');
-    const currentStopButton = stopButtons[raceItemData.index] as HTMLElement;    
-    const totalCarsRacing: number = startButtons.length;    
+    //const startButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.start-car');
+    const currentStopButton = stopButtons[raceItemData.index] as HTMLElement;       
     if (response.status === 200) {
         const elapsedTime = performance.now() - raceItemData.startRaceTime;
         raceItemData.elapsedRaceTime = Math.round(elapsedTime / 1000);
@@ -205,13 +207,14 @@ const endRace = (totalCarsEndRace: number, totalCarsRacing: number): void => {
        // console.log(raceEndItems[0]);
         }
     }}
-    if (totalCarsEndRace === totalCarsRacing){
+    if (totalCarsEndRace >= totalCarsRacing){
         startGlobalRaceButton.style.opacity = '1';
         const stopButtons: NodeListOf < HTMLElement > = document.querySelectorAll('.stop-car');
     stopButtons.forEach(async (element) => {
         element.click();        
         });
         globalRaceStarted = false;
+        totalCarsRacing = 0;
     }
 };
 

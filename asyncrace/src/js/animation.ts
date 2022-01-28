@@ -18,7 +18,7 @@ export const carDriveAnimation = (raceItemData: RaceItemData): Animation => {
   }
 ], {
     id:raceItemData.carId,
-    duration:raceTime,
+    duration:raceTime +100,
    fill:"forwards",});
    carAnimations.push(animation);
 return animation;

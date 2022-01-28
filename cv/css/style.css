@@ -36,7 +36,7 @@ a {
 
 a:hover,
 .link-hover :hover {
-  color: #FFFFFF
+  color: #FFFFFF;  
 }
 
 a:active {
@@ -57,7 +57,6 @@ li {
 .link-hover {
   font-size: 120%;
   font-weight: 600;
-
 }
 
 h1 {
