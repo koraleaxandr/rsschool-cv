@@ -10,19 +10,20 @@ JavaScript/Front-end Developer
 * Email: koraleaxandr@gmail.com
 * Telegram : @koraleaxandr
 * GitHub: <https://github.com/koraleaxandr>
-* Discord: Alexandr (@koraleaxandr) rs-school
+* Discord: Alexandr (@koraleaxandr#2545) rs-school
 
 ## Summary
 
-My goal is an open frot-end development and make it part of my life.
+Programing is making life better and I like it.
 
 ## Skills
 
-* HTML, CSS, JS, React;
+* JS, TS;
+* Angular;
+* HTML, CSS;
 * Git/GitHub;
 * Figma;
 * VSCode;
-* JS, TS;
 * NODE JS;
 
 ## Code sample
@@ -40,11 +41,12 @@ My goal is an open frot-end development and make it part of my life.
 
 ## Education
 
+* RSSchool, JS / FRONT-END 2021Q3
+* RSSchool, Angular(JavaScript) 2022Q1
 * Belarusian-Russian University
   * Jack Transport, Construction, Road Machines and Equipment
   * Enterprise Economy and Management.
-* RSSchool, JS / FRONT-END (in process...)
 
 ## English Level
 
-A2+, And I've working to improove my language skills.
+B1, And I've working to improve my language skills.

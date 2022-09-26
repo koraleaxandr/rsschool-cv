@@ -1,6 +1,6 @@
 import {
       getCarsInGarage,
-      garageResponcedata,
+      garageResponseData,
       removeCar,
       selectCar,
       totalCars,
@@ -28,10 +28,10 @@ export const renderGarage = async (): Promise < void > => {
       await getCarsInGarage(page);
       winnersContainer?.classList.add('off');
       bigGarageContainer?.classList.remove('off');
-      // console.log(garageResponcedata);
+      // console.log(garageResponseData);
       garageContainer.innerHTML = '';
-      if (garageResponcedata.length) {
-            garageResponcedata.forEach(element => {
+      if (garageResponseData.length) {
+            garageResponseData.forEach(element => {
                   const carItemColor = element.color;
                   const carItemContainer: HTMLElement = document.createElement('div');
                   const carItemContainerHTML = ` <div class="car-item-pagination">
