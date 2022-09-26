@@ -1,0 +1,44 @@
+.projects-container {
+    position: relative;
+}
+.carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-rows: minmax(150px, 1fr) 0 0 0;
+    overflow: hidden;
+    gap: 2%;
+    background-image: url();
+  }
+
+  .project {
+      background-size: cover;
+  }
+
+  .carusel-button {
+      position: absolute;
+      height: 100%;
+      width: 15%;
+      top: 0;
+      background-color: transparent;
+      border: inherit;
+      font-size: 5vh;
+      color: rgba(0, 0, 0, 0.349);
+      transition: all 0.3s;
+  }
+
+  .carusel-button:hover {
+      background-color: rgba(116, 116, 116, 0.171);
+  }
+
+  .carusel-button:active {
+    background-color: rgba(106, 175, 240, 0.356);
+    color: rgba(243, 247, 250, 0.459);
+}
+
+  .previous {
+      left: 0;
+  }
+
+  .next {
+      right: 0;
+  }

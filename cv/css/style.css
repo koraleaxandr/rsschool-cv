@@ -300,12 +300,12 @@ label {
   height: 45px; */
 }
 
-.image-rsschool {
+.icon-rsschool {
   position: relative;
   transition: all 0.8s;
 }
 
-.image-rsschool:hover {
+.icon-rsschool:hover {
   filter: drop-shadow(0px 6px 5px rgb(99, 204, 190));
 }
 
@@ -374,3 +374,4 @@ label {
     font-size: 0.8em;
   }
 }
+
