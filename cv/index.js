@@ -35,7 +35,7 @@ const projects = [
     },
     {
         projectName: "Art Quiz",
-        projectLink: "https://rolling-scopes-school.github.io/koraleaxandr-JSFE2021Q3/art-quiz/",
+        projectLink: "https://rolling-scopes-school.github.io/koraleaxandr-JSFE2021Q3/artquiz/",
         projectImagelink: "cv/images/artquiz.jpeg"
     },
     {
