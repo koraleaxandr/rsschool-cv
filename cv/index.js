@@ -56,7 +56,10 @@ const next = document.querySelector('.next');
 let currentProject = 0;
 const getProjects = () => {
     carousel.textContent= '';
-    for (let i = 0; i < 3; i++) {
+    const carouselWidth = carousel.offsetWidth;
+    const projectMinWidth = 150;
+    const carouselItemsQuantity = Math.round(carouselWidth / projectMinWidth);
+    for (let i = 0; i < carouselItemsQuantity; i++) {
         const project = document.createElement('div');
         const projectNum = (currentProject + i) <= projects.length - 1 ? currentProject + i: currentProject + i- projects.length ;
         project.classList.add('project');
