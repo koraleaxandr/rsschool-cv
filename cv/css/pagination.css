@@ -12,6 +12,20 @@
 
   .project {
       background-size: cover;
+      font-size: 2rem;
+  }
+
+  .project a {
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;    
+        text-decoration: none;    
+
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      text-shadow: 2px 2px rgba(86, 229, 248, 0.829);
+      color: rgba(20, 129, 215,  82%);
   }
 
   .carusel-button {
@@ -19,20 +33,24 @@
       height: 100%;
       width: 15%;
       top: 0;
-      background-color: transparent;
+      background-color: rgba(36, 58, 131, 0.295);      
+      backdrop-filter: blur(0px);
       border: inherit;
-      font-size: 5vh;
-      color: rgba(0, 0, 0, 0.349);
+      font-size: 6vh;
+      color: rgba(82, 33, 82, 0.726);
+      text-shadow: 3px 2px rgba(220, 246, 250, 0.829);
       transition: all 0.3s;
   }
 
   .carusel-button:hover {
-      background-color: rgba(116, 116, 116, 0.171);
+    background-color: transparent;
+    backdrop-filter: blur(2px);
+    border: 2px solid  rgba(20, 129, 215,  82%);;   
   }
 
   .carusel-button:active {
     background-color: rgba(106, 175, 240, 0.356);
-    color: rgba(243, 247, 250, 0.459);
+    color: rgba(6, 142, 247, 0.801);
 }
 
   .previous {

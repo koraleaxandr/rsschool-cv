@@ -2,25 +2,31 @@
 //             if (screen.width > 550) {
 // document.getElementById('input').checked = false;
 //             }
-const projects = [{
+const projects = [
+    {
+        projectName: "Project Management",
+        projectLink: "https://project-management-app-group14.netlify.app/",
+        projectImagelink: "cv/images/project-management.jpeg"
+    },
+    {
         projectName: "Youtube Client",
-        projectLink: "",
-        projectImagelink: ""
+        projectLink: "https://koraleaxandr.github.io/youtube-client",
+        projectImagelink: "cv/images/youtube-client.jpeg"
     },
     {
         projectName: "RS-Lang",
-        projectLink: "https://koraleaxandr.github.io/rsschool-cv/asyncrace/dist/",
+        projectLink: "https://ihar-dev.github.io/rslang/app/",
         projectImagelink: "cv/images/rs-lang.jpeg"
     },
     {
         projectName: "Christmas Tree",
-        projectLink: "",
-        projectImagelink: ""
+        projectLink: "https://rolling-scopes-school.github.io/koraleaxandr-JSFE2021Q3/christmas-task/dist/",
+        projectImagelink: "cv/images/christmas-tree.jpeg"
     },
     {
         projectName: "News Portal",
-        projectLink: "",
-        projectImagelink: ""
+        projectLink: "https://rolling-scopes-school.github.io/koraleaxandr-JSFE2021Q3/migration-to-TypeScript/dist",
+        projectImagelink: "cv/images/news-portal.jpeg"
     },
     {
         projectName: "Async Race",
@@ -28,26 +34,25 @@ const projects = [{
         projectImagelink: "cv/images/asincrace.jpeg"
     },
     {
-        projectName: "ArtQuiz",
-        projectLink: "",
-        projectImagelink: ""
+        projectName: "Art Quiz",
+        projectLink: "https://rolling-scopes-school.github.io/koraleaxandr-JSFE2021Q3/art-quiz/",
+        projectImagelink: "cv/images/art-quiz.jpeg"
     },
     {
         projectName: "Momentum",
-        projectLink: "",
-        projectImagelink: ""
+        projectLink: "https://rolling-scopes-school.github.io/koraleaxandr-JSFE2021Q3/momentum/",
+        projectImagelink: "cv/images/momentum.jpeg"
     },
     {
-        projectName: "CssMemSlider",
-        projectLink: "",
-        projectImagelink: ""
+        projectName: "CssMem Slider",
+        projectLink: "https://koraleaxandr.github.io/cssMemSlider/cssMemSlider",
+        projectImagelink: "cv/images/mem-slider.jpeg"
     },
 ];
 
 const carousel = document.querySelector('.carousel');
 const previous = document.querySelector('.previous');
 const next = document.querySelector('.next');
-console.log(carousel);
 let currentProject = 0;
 const getProjects = () => {
     carousel.textContent= '';
@@ -59,6 +64,7 @@ const getProjects = () => {
         const projectlink = document.createElement('a');
         projectlink.setAttribute('href',`${projects[projectNum].projectLink}`);
         projectlink.setAttribute('title', `${projects[projectNum].projectName}`);
+        projectlink.setAttribute('target', 'blank');
         projectlink.textContent = `${projects[projectNum].projectName}`;
         project.appendChild(projectlink);
         carousel.appendChild(project);
