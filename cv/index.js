@@ -41,7 +41,7 @@ const projects = [
     {
         projectName: "Momentum",
         projectLink: "https://rolling-scopes-school.github.io/koraleaxandr-JSFE2021Q3/momentum/",
-        projectImagelink: "cv/images/Momentum.jpeg"
+        projectImagelink: "cv/images/momentum1.jpeg"
     },
     {
         projectName: "CssMem Slider",
