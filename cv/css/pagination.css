@@ -18,7 +18,6 @@
 }
 
 .project a {
-    position: absolute;
     -webkit-appearance: button;
     -moz-appearance: button;
     appearance: button;
@@ -40,6 +39,7 @@
     position: absolute;
     height: 100%;
     width: 10%;
+    min-width: 50px;
     top: 0;
     background-color: rgba(36, 58, 131, 0.295);
     backdrop-filter: blur(0px);

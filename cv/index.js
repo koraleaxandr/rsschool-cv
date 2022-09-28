@@ -6,27 +6,27 @@ const projects = [
     {
         projectName: "Project Management",
         projectLink: "https://project-management-app-group14.netlify.app/",
-        projectImagelink: "cv/images/project-management.jpeg"
+        projectImagelink: "cv/images/projectmanagement.jpeg"
     },
     {
         projectName: "Youtube Client",
         projectLink: "https://koraleaxandr.github.io/youtube-client",
-        projectImagelink: "cv/images/youtube-client.jpeg"
+        projectImagelink: "cv/images/youtubeclient.jpeg"
     },
     {
         projectName: "RS-Lang",
         projectLink: "https://ihar-dev.github.io/rslang/app/",
-        projectImagelink: "cv/images/rs-lang.jpeg"
+        projectImagelink: "cv/images/rslang.jpeg"
     },
     {
         projectName: "Christmas Tree",
         projectLink: "https://rolling-scopes-school.github.io/koraleaxandr-JSFE2021Q3/christmas-task/dist/",
-        projectImagelink: "cv/images/christmas-tree.jpeg"
+        projectImagelink: "cv/images/christmastree.jpeg"
     },
     {
         projectName: "News Portal",
         projectLink: "https://rolling-scopes-school.github.io/koraleaxandr-JSFE2021Q3/migration-to-TypeScript/dist",
-        projectImagelink: "cv/images/news-portal.jpeg"
+        projectImagelink: "cv/images/newsportal.jpeg"
     },
     {
         projectName: "Async Race",
@@ -36,7 +36,7 @@ const projects = [
     {
         projectName: "Art Quiz",
         projectLink: "https://rolling-scopes-school.github.io/koraleaxandr-JSFE2021Q3/art-quiz/",
-        projectImagelink: "cv/images/art-quiz.jpeg"
+        projectImagelink: "cv/images/artquiz.jpeg"
     },
     {
         projectName: "Momentum",
@@ -46,7 +46,7 @@ const projects = [
     {
         projectName: "CssMem Slider",
         projectLink: "https://koraleaxandr.github.io/cssMemSlider/cssMemSlider",
-        projectImagelink: "cv/images/mem-slider.jpeg"
+        projectImagelink: "cv/images/memslider.jpeg"
     },
 ];
 
