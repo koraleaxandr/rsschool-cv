@@ -67,6 +67,11 @@
     left: 0;
 }
 
+.carousel:nth-child(2):hover > .carousel:nth-child(3) {
+    left: 100px;
+    z-index: 50;
+}
+
 .next {
     right: 0;
 }

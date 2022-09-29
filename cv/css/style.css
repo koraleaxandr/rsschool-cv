@@ -55,8 +55,11 @@ li {
 }
 
 .link-hover {
-  font-size: 120%;
   font-weight: 600;
+}
+.link-hover span {
+  margin-left: 10px;
+  font-size: 0.8rem;
 }
 
 h1 {
@@ -94,8 +97,6 @@ header {
 }
 
 .text-header {
-  position: relative;
-  /* width: 100%; */
   height: 100%;
   margin: 0 auto;
   padding: 0px 0 0 10px;
@@ -107,13 +108,14 @@ header {
 
 .image-cv {
   position: relative;
+  border-radius: 50%;
 }
 
 
 
-/*-------------------------------HEADER NAV----------------------------------*/
+/*-------------------HEADER NAV----------------------------------*/
 .header-nav {
-  /* Navigation */
+  display: none;
   position: relative;
   max-width: 1000px;
   min-height: 50px;
@@ -141,11 +143,12 @@ header {
 
 .menu-span {
   position: absolute;
-  left: 5px;
+  margin: 10px;
   height: 50px;
   width: 35px;
   box-sizing: border-box;
   opacity: 0; 
+  transition: all 0.8s;
 }
 
 .menu-span span {
@@ -234,15 +237,12 @@ label {
   display: flex;
   /* justify-content: space-between; */
   flex-wrap: nowrap;
-  align-items: center;
   overflow: hidden;
   box-sizing: border-box;
 }
 
 .left-section {
   position: relative;
-  height: 100%;
-  min-height: 625px;
   padding: 0px 10px 0 10px;
   font-size: 1.2rem;
   color: #043453;
@@ -258,23 +258,28 @@ label {
 
 .text-central-section {
   position: relative;
-  height: 100%;
   width: 100%;
-  padding: 0px 0px 10px 10px;
-  font-size: 1.1em;
+  padding: 10px;
+  font-size: 1.1rem;
   line-height: 100%;
   font-weight: 900;
   color: #043453;
+}
+
+footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  z-index: 3;
 }
 
 .footer-section {
   position: relative;
   top: 0px;
   max-width: 1000px;
-  height: 60px;
   margin: 0 auto;
-  padding: 10px;
-  background-color: #c1f3bd36;
+  padding: 5px;
+  background-color: #bdf1f3;
   background-repeat: no-repeat;
   display: flex;
   justify-content: space-around;
@@ -283,14 +288,15 @@ label {
 }
 
 .text-footer {
-  position: relative;
   max-width: 400px;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 2vh;
 }
 
 .image-github {
   position: relative;
+  height: 3vh;
+  width: 3vh;
   transition: all 0.8s;
 }
 
@@ -314,6 +320,10 @@ label {
 }
 
 @media only screen and (max-width: 550px) {
+
+  .header-nav {
+    display: block;
+  }
 
   #input:checked~#menu {
     height: 0px;
