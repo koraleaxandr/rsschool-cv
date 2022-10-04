@@ -23,6 +23,10 @@ html {
   transition: all 0.8s;
 }
 
+body {
+  position: relative;
+}
+
 ul {
   color: #043453;
   list-style: inside;
@@ -267,7 +271,7 @@ label {
 }
 
 footer {
-  position: fixed;
+  position: sticky;
   bottom: 0px;
   width: 100%;
   z-index: 3;

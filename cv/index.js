@@ -83,4 +83,8 @@ next.addEventListener('click', ()=>{
     getProjects();
 })
 
+visualViewport.addEventListener('resize', () => {
+    getProjects();
+  });
+
 getProjects();
