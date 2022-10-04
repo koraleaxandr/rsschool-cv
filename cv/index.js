@@ -51,11 +51,38 @@ const projects = [
 ];
 
 const carousel = document.querySelector('.carousel');
+const projectsNodes = carousel.childNodes;
 const previous = document.querySelector('.previous');
 const next = document.querySelector('.next');
+const projectsPagination = document.querySelector('.projects-pagination');
+const paginationButtons = projectsPagination.childNodes;
 let currentProject = 0;
+
+const renderProjectsPagination = () => {
+    for (let i =0; i < projects.length; i++) {
+        const button = document.createElement('a');
+        button.setAttribute('style', `background-image:url(${projects[i].projectImagelink})`);
+        // button.setAttribute('href',`${projects[i].projectLink}`);
+        button.setAttribute('title', `${projects[i].projectName}`);
+        // button.setAttribute('target', 'blank');
+        projectsPagination.appendChild(button);
+        button.addEventListener('click' , ()=> {
+            currentProject = i;
+            getProjects();
+            projectsNodes[0].classList.add('selected');
+        })
+    }
+};
+renderProjectsPagination();
+
 const getProjects = () => {
     carousel.textContent= '';
+    paginationButtons.forEach(element => {
+        console.log(element);
+        if (element.classList.contains('active')) {
+        element.classList.remove('active');
+        }
+    });
     const carouselWidth = carousel.offsetWidth;
     const projectMinWidth = 150;
     const carouselItemsQuantity = Math.round(carouselWidth / projectMinWidth);
@@ -63,14 +90,16 @@ const getProjects = () => {
         const project = document.createElement('div');
         const projectNum = (currentProject + i) <= projects.length - 1 ? currentProject + i: currentProject + i- projects.length ;
         project.classList.add('project');
-        project.setAttribute('style', `background-image:url(${projects[projectNum].projectImagelink})`);
+        // project.setAttribute('style', `background-image:url(${projects[projectNum].projectImagelink})`);
         const projectlink = document.createElement('a');
+        projectlink.setAttribute('style', `background-image:url(${projects[projectNum].projectImagelink})`);
         projectlink.setAttribute('href',`${projects[projectNum].projectLink}`);
         projectlink.setAttribute('title', `${projects[projectNum].projectName}`);
         projectlink.setAttribute('target', 'blank');
         projectlink.textContent = `${projects[projectNum].projectName}`;
         project.appendChild(projectlink);
         carousel.appendChild(project);
+        paginationButtons[projectNum].classList.add('active');
     }
 }
 
