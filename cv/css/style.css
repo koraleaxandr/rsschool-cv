@@ -251,6 +251,11 @@ label {
   font-size: 1.2rem;
   color: #043453;
   background-color: #51e2f5;
+  box-shadow: 4px 4px 10px rgba(28, 28, 77, 0.76);
+}
+
+.left-section:hover {
+  box-shadow: 1px 1px 5px rgba(28, 28, 77, 0.993);
 }
 
 .central-section {

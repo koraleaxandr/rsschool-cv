@@ -15,7 +15,12 @@
     position: relative;
     background-size: cover;
     font-size: 1.8rem;
-    border-radius: 5px;  
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.projects-pagination {
+    margin-top: 10px;
 }
 
 .project a,
@@ -50,7 +55,7 @@
 
 .selected {
     transform: scale(1.1);
-    border: solid 8px  rgb(4, 41, 253);
+    border: solid 3px  rgb(4, 162, 253);
 }
 
 .project a {
@@ -65,7 +70,7 @@
 
 .project:hover> a {
     position: absolute;
-    transform: scale(3) translate(-10%, -60%); 
+    transform: scale(3) translate(-5%, -60%); 
     z-index: 2;  
 }
 
