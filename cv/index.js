@@ -76,7 +76,6 @@ renderProjectsPagination();
 const getProjects = () => {
     carousel.textContent= '';
     paginationButtons.forEach(element => {
-        console.log(element);
         if (element.classList.contains('active')) {
         element.classList.remove('active');
         }
