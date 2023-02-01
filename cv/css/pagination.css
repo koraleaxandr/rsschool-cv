@@ -73,15 +73,7 @@
     background-size: cover;
 }
 
-.project:hover> a {
-    position: absolute;
-    height: 40vh;
-    /* max-height: 40vw; */
-    left: 0%;
-    margin:0 auto ;
-    transform: translate(0%, -100%); 
-    z-index: 2;  
-}
+/*  */
 
 .carusel-button {
     position: absolute;
