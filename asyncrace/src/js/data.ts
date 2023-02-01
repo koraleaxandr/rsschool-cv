@@ -106,9 +106,9 @@ export const carItemHtml = `
       <div class="garage-total">
         <p>GARAGE<span class="total-count"></span></p>
         <p>Page<span class="page-count">#1</span></p>
-      </div>
-      <button class="next-page-button">NEXT PAGE</button>
+      </div>      
       <button class="prev-page-button">PREV PAGE</button>
+      <button class="next-page-button">NEXT PAGE</button>
       <button class="start-race-button">START RACE</button>
       <button class="reset-garage">RESET</button>
       <button class="generate-cars">Generate cars</button>
